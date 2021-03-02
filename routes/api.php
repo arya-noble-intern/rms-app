@@ -19,4 +19,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/me', MeController::class)->middleware('auth:sanctum');
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/me', MeController::class)->name('me');
+});
