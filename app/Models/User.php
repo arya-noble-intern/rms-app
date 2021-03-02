@@ -59,6 +59,16 @@ class User extends Authenticatable
         return $this->hasMany(EmployeeRequestForm::class);
     }
 
+    public function talentPics()
+    {
+        return $this->hasMany(Talent::class, 'pic_id');
+    }
+
+    public function talentCandidate()
+    {
+        return $this->hasOne(Talent::class, 'candidate_id');
+    }
+
     public function is($roleName)
     {
         if ($this->role->name == $roleName) {
