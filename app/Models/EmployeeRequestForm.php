@@ -10,6 +10,8 @@ class EmployeeRequestForm extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'employee_request_forms';
+
     protected $fillable = [
         'user_id',
         'title',
