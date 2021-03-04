@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Talent;
+use App\Policies\TalentPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -14,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Talent::class => TalentPolicy::class
     ];
 
     /**
