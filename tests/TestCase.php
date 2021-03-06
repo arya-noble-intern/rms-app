@@ -9,10 +9,4 @@ use JMac\Testing\Traits\AdditionalAssertions;
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication, AdditionalAssertions;
-
-    public function setUp(): void
-    {
-        parent::setUp();
-        $this->seed(RoleSeeder::class);
-    }
 }

@@ -69,7 +69,11 @@ class User extends Authenticatable
         return $this->hasOne(Talent::class, 'candidate_id');
     }
 
-    public function is($roleName)
+    /**
+     * @param string 'role name
+     * @return bool
+     */
+    public function is($roleName): bool
     {
         if ($this->role->name == $roleName) {
             return true;

@@ -4,6 +4,7 @@ namespace Tests\Feature\Http\Controllers;
 
 use App\Http\Controllers\EmployeeRequestFormController;
 use App\Models\EmployeeRequestForm;
+use Database\Seeders\RoleSeeder;
 use Generator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -14,12 +15,17 @@ class EmployeeRequestFormControllerTest extends TestCase
 {
     use RefreshDatabase, CreateUserTestTrait;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed(RoleSeeder::class);
+    }
+
     public function resourceRoutesProvider(): Generator
     {
         yield from [
             'method index' => ['index'],
             'method show' => ['show'],
-            'method store' => ['store'],
             'method update' => ['update'],
             'method destroy' => ['destroy']
         ];
@@ -42,12 +48,24 @@ class EmployeeRequestFormControllerTest extends TestCase
      * @test 
      * @dataProvider resourceRoutesProvider
      * */
-    public function only_pic_and_leader_can_access_api(string $method)
+    public function pic_and_leader_can_access_api(string $method)
     {
         $this->assertActionUsesMiddleware(
             EmployeeRequestFormController::class,
             $method,
             ['role.check:pic,leader']
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function only_leader_can_access_api()
+    {
+        $this->assertActionUsesMiddleware(
+            EmployeeRequestFormController::class,
+            'store',
+            ['role.check:leader']
         );
     }
 
@@ -62,8 +80,10 @@ class EmployeeRequestFormControllerTest extends TestCase
             'user_id' => $leader->id
         ])->make();
 
+        $this->withoutExceptionHandling();
+
         $this->actingAs($leader)
-            ->postJson(route('employee-request-forms'), $erf)
+            ->postJson(route('employee-request-forms.store'), json_decode($erf, true))
             ->assertCreated();
 
         $this->assertDatabaseHas('employee_request_forms', [
@@ -84,7 +104,7 @@ class EmployeeRequestFormControllerTest extends TestCase
         ])->count(10)->create();
 
         $this->actingAs($pic)
-            ->getJson(route('employee-request-forms'))
+            ->getJson(route('employee-request-forms.index'))
             ->assertOk()
             ->assertJsonStructure([
                 'data' => [
@@ -115,8 +135,8 @@ class EmployeeRequestFormControllerTest extends TestCase
         ])->count(3)->create();
 
         $this->actingAs($leaderOne)
-            ->getJson(route('employee-request-forms'))
-            ->assertJsonMissingExact([
+            ->getJson(route('employee-request-forms.index'))
+            ->assertJsonMissing([
                 'user_id' => $leaderTwo->id
             ]);
     }
@@ -135,7 +155,7 @@ class EmployeeRequestFormControllerTest extends TestCase
 
         $this->actingAs($leader)
             ->patchJson(route(
-                'employee-request-forms',
+                'employee-request-forms.update',
                 ['employee_request_form' => $erf->id]
             ), $payload)
             ->assertOk();
@@ -158,7 +178,7 @@ class EmployeeRequestFormControllerTest extends TestCase
 
         $this->actingAs($leaderTwo)
             ->patchJson(
-                route('employee-request-forms', ['employee_request_form' => $erfOne->id]),
+                route('employee-request-forms.update', ['employee_request_form' => $erfOne->id]),
                 ['title' => '::title::']
             )
             ->assertForbidden();
@@ -180,8 +200,8 @@ class EmployeeRequestFormControllerTest extends TestCase
         $erf = EmployeeRequestForm::factory()->for($leader)->create();
         $this->actingAs($leader)
             ->getJson(route(
-                'employee-request-forms',
-                ['employee_request_form ' => $erf->id]
+                'employee-request-forms.show',
+                ['employee_request_form' => $erf->id]
             ))
             ->assertOk()
             ->assertJsonFragment(
@@ -198,7 +218,7 @@ class EmployeeRequestFormControllerTest extends TestCase
         $erf = EmployeeRequestForm::factory()->for($leaderOne)->create();
         $this->actingAs($leaderTwo)
             ->getJson(route(
-                'employee-request-forms',
+                'employee-request-forms.show',
                 ['employee_request_form ' => $erf->id]
             ))->assertForbidden();
     }

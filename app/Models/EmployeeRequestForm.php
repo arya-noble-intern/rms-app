@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\Scopes\EmployeeRequestFormScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class EmployeeRequestForm extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, EmployeeRequestFormScope;
 
     protected $table = 'employee_request_forms';
 
@@ -34,6 +35,10 @@ class EmployeeRequestForm extends Model
         'working_hours',
         'position',
         'company'
+    ];
+
+    protected $with = [
+        'user'
     ];
 
     public function user()

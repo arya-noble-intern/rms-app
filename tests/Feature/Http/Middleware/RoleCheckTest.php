@@ -13,6 +13,12 @@ class RoleCheckTest extends TestCase
 {
     use RefreshDatabase, CreateUserTestTrait;
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        $this->seed(RoleSeeder::class);
+    }
+
     /** @test */
     public function pic_can_pass_role_check_pic_middleware()
     {

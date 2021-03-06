@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\EmployeeRequestForm;
 use App\Models\Talent;
+use App\Policies\EmployeeRequestFormPolicy;
 use App\Policies\TalentPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +18,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
-        Talent::class => TalentPolicy::class
+        Talent::class => TalentPolicy::class,
+        EmployeeRequestForm::class => EmployeeRequestFormPolicy::class
     ];
 
     /**

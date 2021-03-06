@@ -30,6 +30,10 @@ class Talent extends Model
         'university',
     ];
 
+    protected $with = [
+        'pic', 'candidate'
+    ];
+
     public function pic()
     {
         return $this->belongsTo(User::class, 'pic_id');
