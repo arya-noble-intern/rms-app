@@ -13,7 +13,7 @@ class TalentUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,20 @@ class TalentUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'candidate_id' => 'nullable',
+            'name' => 'required|string',
+            'source'  => 'nullable|string',
+            'cv'  => 'nullable|file:size:5000',
+            'address'  => 'nullable|string',
+            'applied_position'  => 'nullable|string',
+            'dob'  => 'nullable|date',
+            'email'  => 'nullable|email',
+            'gender'  => 'nullable|string',
+            'last_education'  => 'nullable|string',
+            'mobile_phone'  => 'nullable|string',
+            'nik'  => 'nullable|string',
+            'total_working_experience'  => 'nullable|numeric',
+            'university'  => 'nullable|string',
         ];
     }
 }

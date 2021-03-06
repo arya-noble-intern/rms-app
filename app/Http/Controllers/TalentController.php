@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TalentStoreRequest;
+use App\Http\Requests\TalentUpdateRequest;
 use App\Http\Resources\TalentResource;
 use App\Models\Talent;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class TalentController extends Controller
      */
     public function index()
     {
-        return TalentResource::collection(Talent::all()->paginate(30));
+        return TalentResource::collection(Talent::paginate(30));
     }
 
     /**
@@ -33,9 +34,10 @@ class TalentController extends Controller
     public function store(TalentStoreRequest $request)
     {
         $validated = $request->validated();
-        $filename = $this->saveFile($request);
 
+        $filename = $this->saveFile($request);
         $validated['cv'] = $filename;
+
         $talent = Talent::create($validated);
         return Response::json($talent, 201);
     }
@@ -48,27 +50,35 @@ class TalentController extends Controller
      */
     public function show(Talent $talent)
     {
-        //
+        return new TalentResource($talent);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\TalentStoreRequestt  $request
      * @param  \App\Models\Talent  $talent
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Talent $talent)
+    public function update(TalentUpdateRequest $request, Talent $talent)
     {
-        //
+        $validated = $request->validated();
+
+        $filename = $this->saveFile($request);
+        $validated['cv'] = $filename;
+
+        $talent = $talent->update($validated);
+        return Response::json($talent, 200);
     }
 
-    private function saveFile(TalentStoreRequest $request): String
+    private function saveFile($request): String
     {
-        $cv = $request->file('cv');
-        $filename = time() . "_" . preg_replace('/\s+/', '_', strtolower($cv->getClientOriginalName()));
-        $cv->storeAs('public/cv/', $filename, 'local');
+        if ($request->hasFile('cv')) {
+            $cv = $request->file('cv');
+            $filename = time() . "_" . preg_replace('/\s+/', '_', strtolower($cv->getClientOriginalName()));
+            $cv->storeAs('public/cv/', $filename, 'local');
+        }
 
-        return $filename;
+        return $filename ?? '';
     }
 }

@@ -54,11 +54,4 @@ class TalentStoreRequest extends FormRequest
             'university'  => 'nullable|string',
         ];
     }
-
-    public function withValidator($validator)
-    {
-        if ($validator->fails()) {
-            print_r($validator->errors());
-        }
-    }
 }

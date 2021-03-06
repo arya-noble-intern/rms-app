@@ -79,7 +79,8 @@ class TalentControllerTest extends TestCase
     /** @test */
     public function pic_can_list_all_talents()
     {
-        $pic = $this->setLeaderRole($this->createUser());
+        $this->withoutExceptionHandling();
+        $pic = $this->setPicRole($this->createUser());
         Talent::factory(['pic_id' => $pic->id])->count(10)->create();
         $this->actingAs($pic)
             ->getJson(route('talents.index'))
