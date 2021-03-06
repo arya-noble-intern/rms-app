@@ -69,6 +69,11 @@ class User extends Authenticatable
         return $this->hasOne(Talent::class, 'candidate_id');
     }
 
+    public function requestApprovals()
+    {
+        return $this->hasMany(RequestApproval::class, 'pic_id');
+    }
+
     /**
      * @param string 'role name
      * @return bool

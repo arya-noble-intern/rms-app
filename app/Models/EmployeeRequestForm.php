@@ -45,4 +45,9 @@ class EmployeeRequestForm extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function requestApproval()
+    {
+        return $this->hasOne(RequestApproval::class);
+    }
 }
