@@ -37,4 +37,18 @@ trait CreateUserTestTrait
 
         return $user;
     }
+
+    public function createPicUser(): User
+    {
+        $user = $this->createUser();
+        $pic = $this->setPicRole($user);
+        return $pic;
+    }
+
+    public function createLeaderUser(): User
+    {
+        $user = $this->createUser();
+        $pic = $this->setLeaderRole($user);
+        return $pic;
+    }
 }
