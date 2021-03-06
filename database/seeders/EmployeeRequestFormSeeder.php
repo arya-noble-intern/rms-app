@@ -20,7 +20,7 @@ class EmployeeRequestFormSeeder extends Seeder
         foreach ($leaders as $user) {
             EmployeeRequestForm::factory([
                 'user_id' => $user->id
-            ])->count(5)->create();
+            ])->count(30)->create();
         }
     }
 }

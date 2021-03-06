@@ -19,7 +19,9 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             UserSeeder::class,
             EmployeeRequestFormSeeder::class,
-            TalentSeeder::class
+            TalentSeeder::class,
+            RequestApprovalSeeder::class
+
         ]);
     }
 }
