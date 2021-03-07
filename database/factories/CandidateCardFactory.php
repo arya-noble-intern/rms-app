@@ -24,9 +24,9 @@ class CandidateCardFactory extends Factory
         return [
             'pic_id' => 0,
             'employee_request_form_id' => 0,
-            'card_status_id' => 0,
-            'talent_id' => 0,
-            'candidate_id' => 0,
+            'card_status_id' => 1,
+            'talent_id' => null,
+            'candidate_id' => null,
             'last_updated_by_id' => 0,
         ];
     }

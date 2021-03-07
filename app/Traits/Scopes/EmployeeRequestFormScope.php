@@ -10,4 +10,11 @@ trait EmployeeRequestFormScope
     {
         $query->where('user_id', Auth::id());
     }
+
+    public function scopeAllApproved($query)
+    {
+        $query->whereHas('requestApproval', function ($q) {
+            $q->where('approval_by_lhc', 1)->where('approval_by_pic', 1);
+        });
+    }
 }
