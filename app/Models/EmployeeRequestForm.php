@@ -38,7 +38,7 @@ class EmployeeRequestForm extends Model
     ];
 
     protected $with = [
-        'user'
+        'user', 'requestApproval'
     ];
 
     public function user()
@@ -49,5 +49,11 @@ class EmployeeRequestForm extends Model
     public function requestApproval()
     {
         return $this->hasOne(RequestApproval::class);
+    }
+
+    public function isAllApproved()
+    {
+        $request = $this->requestApproval;
+        return $request->approval_by_lhc && $request->approval_by_pic;
     }
 }

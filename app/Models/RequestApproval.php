@@ -21,7 +21,7 @@ class RequestApproval extends Model
     ];
 
     protected $with = [
-        'employeeRequestForm', 'pic'
+        'pic'
     ];
 
     public function employeeRequestForm()

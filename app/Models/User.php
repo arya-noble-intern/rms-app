@@ -74,6 +74,13 @@ class User extends Authenticatable
         return $this->hasMany(RequestApproval::class, 'pic_id');
     }
 
+    public function cardPic()
+    {
+        return $this->hasMany(CandidateCard::class, 'pic_id');
+    }
+
+
+
     /**
      * @param string 'role name
      * @return bool

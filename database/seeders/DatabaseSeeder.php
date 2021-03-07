@@ -17,11 +17,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
 
             RoleSeeder::class,
+            CardStatusSeeder::class,
             UserSeeder::class,
             EmployeeRequestFormSeeder::class,
             TalentSeeder::class,
-            RequestApprovalSeeder::class
-
+            RequestApprovalSeeder::class,
+            CandidateCardSeeder::class
         ]);
     }
 }
