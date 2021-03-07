@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->foreignId('last_updated_by_id')->nullable()->constrained('users');
 
             $table->softDeletes();
         });
