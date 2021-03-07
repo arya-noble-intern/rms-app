@@ -22,18 +22,19 @@ class RequestApprovalSeeder extends Seeder
 
         foreach ($erfs as $erf) {
             $lhcApprove = $this->decide();
-            $picApprove = $lhcApprove ? $this->decide() : null;
+            $picAnswered = $lhcApprove ? $this->decide() : false;
+            $picApprove = $picAnswered ? $this->decide() : null;
             $randomPic = $pics->random(1)->first();
 
             $notesByLhc = $lhcApprove ? 'LHC Approved' : 'LHC Rejected';
             $notesByPic = null;
-            if ($picApprove != null) {
+            if ($picAnswered) {
                 $notesByPic = $picApprove ? 'Lets Proceed' : 'Cannot Proceed request';
             }
             RequestApproval::factory([
                 'pic_id' => $picApprove ? $randomPic->id : null,
                 'approval_by_lhc' => $lhcApprove,
-                'approval_by_pic' => $picApprove ?? null,
+                'approval_by_pic' => $picAnswered ? $picApprove : null,
                 'notes_by_lhc' => $notesByLhc,
                 'notes_by_pic' => $notesByPic,
             ])->for($erf)->create();
