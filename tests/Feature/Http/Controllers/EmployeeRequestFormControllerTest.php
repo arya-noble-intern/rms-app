@@ -3,11 +3,13 @@
 namespace Tests\Feature\Http\Controllers;
 
 use App\Http\Controllers\EmployeeRequestFormController;
+use App\Mail\RequestApprovalMail;
 use App\Models\EmployeeRequestForm;
 use Database\Seeders\RoleSeeder;
 use Generator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 use Tests\TestTraits\CreateUserTestTrait;
 
@@ -79,8 +81,6 @@ class EmployeeRequestFormControllerTest extends TestCase
         $erf = EmployeeRequestForm::factory([
             'user_id' => $leader->id
         ])->make();
-
-        $this->withoutExceptionHandling();
 
         $this->actingAs($leader)
             ->postJson(route('employee-request-forms.store'), json_decode($erf, true))
@@ -221,5 +221,24 @@ class EmployeeRequestFormControllerTest extends TestCase
                 'employee-request-forms.show',
                 ['employee_request_form ' => $erf->id]
             ))->assertForbidden();
+    }
+
+    /** @test */
+    public function system_must_auto_send_request_approval()
+    {
+        Mail::fake();
+
+        $leader = $this->createLeaderUser();
+        $erf = EmployeeRequestForm::factory([
+            'user_id' => $leader->id
+        ])->make();
+
+        $this->actingAs($leader)
+            ->postJson(
+                route('employee-request-forms.store'),
+                json_decode($erf, true)
+            );
+
+        Mail::assertQueued(RequestApprovalMail::class);
     }
 }

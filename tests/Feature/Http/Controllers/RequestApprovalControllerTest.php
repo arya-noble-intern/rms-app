@@ -5,6 +5,7 @@ namespace Tests\Feature\Http\Controllers;
 use App\Http\Controllers\RequestApprovalController;
 use App\Models\EmployeeRequestForm;
 use App\Models\RequestApproval;
+use App\Utilities\RequestApprovalUtil;
 use Database\Seeders\EmployeeRequestFormSeeder;
 use Database\Seeders\RequestApprovalSeeder;
 use Database\Seeders\RoleSeeder;
@@ -43,11 +44,7 @@ class RequestApprovalControllerTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $randomErf = EmployeeRequestForm::all()->random(1)->first();
-        $signedUrl = URL::temporarySignedRoute(
-            'request-approvals.show',
-            now()->addDay(),
-            ['id' => $randomErf->id]
-        );
+        $signedUrl = RequestApprovalUtil::generateShowUrl($randomErf);
 
         $this->getJson($signedUrl)
             ->assertOk()
@@ -67,11 +64,7 @@ class RequestApprovalControllerTest extends TestCase
     public function lhc_can_store_approval()
     {
         $randomErf = EmployeeRequestForm::all()->random(1)->first();
-        $signedUrl = URL::temporarySignedRoute(
-            'request-approvals.show',
-            now()->addDay(),
-            ['id' => $randomErf->id]
-        );
+        $signedUrl = RequestApprovalUtil::generateShowUrl($randomErf);
 
         $erf = $this->getJson($signedUrl);
         $this->postJson($erf['data']['request_store_url'], [

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\EmployeeRequestFormResource;
 use App\Models\EmployeeRequestForm;
 use App\Models\RequestApproval;
+use App\Utilities\RequestApprovalUtil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -51,11 +52,7 @@ class RequestApprovalController extends Controller
     public function show(int $id)
     {
         $erf = EmployeeRequestForm::findOrFail($id);
-        $storeUrlSigned = URL::temporarySignedRoute(
-            'request-approvals.store',
-            now()->addDay(),
-            ['id' => $erf->id]
-        );
+        $storeUrlSigned = RequestApprovalUtil::generateStoreUrl($erf);
 
         $resource = (new EmployeeRequestFormResource($erf))->additional([
             'data' => [
