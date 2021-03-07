@@ -18,4 +18,15 @@ return [
         ['id' => 7, 'order' =>  7, 'description' => 'Waiting Psychotest Schedule to be Set by PIC'],
         ['id' => 8, 'order' =>  8, 'description' => 'Done'],
     ],
+
+    'CARD_STATUS_ID' => [
+        'TALENT_SUGGESTION' => 1,
+        'LEADER_APPROVAL_TALENT' => 2,
+        'ACCOUNT_CREATION' => 3,
+        'INTERVIEW_SCHEDULE' => 4,
+        'APPROVAL_SCHEDULE' => 5,
+        'MCU_SCHEDULE' => 6,
+        'PSYCHOTEST_SCHEDULE' => 7,
+        'DONE' => 8
+    ]
 ];

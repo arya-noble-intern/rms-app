@@ -22,6 +22,8 @@ class CreateCandidateCardsTable extends Migration
             $table->foreignId("candidate_id")->nullable()->constrained('users');
             $table->foreignId("last_updated_by_id")->nullable()->constrained('users');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

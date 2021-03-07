@@ -14,4 +14,9 @@ class CardStatus extends Model
     protected $fillable = [
         'description'
     ];
+
+    public function candidateCards()
+    {
+        return $this->hasMany(CandidateCard::class);
+    }
 }

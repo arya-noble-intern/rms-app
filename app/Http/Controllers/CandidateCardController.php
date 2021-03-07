@@ -2,11 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CandidateCardStoreRequest;
+use App\Http\Requests\CandidateCardUpdateRequest;
+use App\Http\Resources\CandidateCardResource;
 use App\Models\CandidateCard;
+use App\Models\CardStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class CandidateCardController extends Controller
 {
+    private $repository;
+
+    public function __construct(CandidateCard $candidateCard)
+    {
+        $this->middleware('role.check:pic,leader')->only('index');
+        $this->middleware('role.check:pic,leader,candidate')->only('show');
+        $this->middleware('role.check:pic')->only(['update', 'destroy']);
+
+        $this->repository = $candidateCard;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,18 +29,28 @@ class CandidateCardController extends Controller
      */
     public function index()
     {
-        //
+        $repo = $this->repository;
+        if (!authUser()->is('pic')) {
+            $repo = $repo->myCards();
+        }
+
+        $repo = $repo->paginate(30);
+
+        return CandidateCardResource::collection($repo);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CandidateCardStoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CandidateCardStoreRequest $request)
     {
-        //
+        return Response::json(
+            CandidateCard::create($request->validated()),
+            201
+        );
     }
 
     /**
@@ -36,19 +61,30 @@ class CandidateCardController extends Controller
      */
     public function show(CandidateCard $candidateCard)
     {
-        //
+        return new CandidateCardResource($candidateCard);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CandidateCardStoreRequest $request
      * @param  \App\Models\CandidateCard  $candidateCard
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CandidateCard $candidateCard)
+    public function update(CandidateCardUpdateRequest $request, CandidateCard $candidateCard)
     {
-        //
+        $validated = $request->validated();
+
+        if ($request->get('proceed')) {
+            $nextStatusId = $this->nextStatus($candidateCard);
+            if ($nextStatusId) {
+                $validated['card_status_id'] = $nextStatusId;
+            }
+        }
+
+        $candidateCard->update($validated);
+
+        return Response::json($candidateCard, 200);
     }
 
     /**
@@ -60,5 +96,14 @@ class CandidateCardController extends Controller
     public function destroy(CandidateCard $candidateCard)
     {
         //
+    }
+
+    private function nextStatus(CandidateCard $candidateCard): int
+    {
+        $currentStatusOrder = $candidateCard->cardStatus->order;
+        $nextStatus = CardStatus::where('order', ++$currentStatusOrder)
+            ->first();
+
+        return  $nextStatus ? $nextStatus->id : false;
     }
 }

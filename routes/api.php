@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CandidateCardController;
 use App\Http\Controllers\EmployeeRequestFormController;
 use App\Http\Controllers\MeController;
 use App\Http\Controllers\RequestApprovalController;
@@ -11,6 +12,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/me', MeController::class)->name('me');
     Route::apiResource('talents', TalentController::class)->except('destroy');
     Route::apiResource('employee-request-forms', EmployeeRequestFormController::class);
+    Route::apiResource('candidate-cards', CandidateCardController::class);
 
     Route::patch('request-approvals/{request_approval}', [RequestApprovalController::class, 'update'])->name('request-approvals.update')->middleware('role.check:pic');
     Route::post('request-approvals-resend', RequestApprovalResendController::class)->name('request-approvals-resend');

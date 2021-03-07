@@ -51,6 +51,11 @@ class EmployeeRequestForm extends Model
         return $this->hasOne(RequestApproval::class);
     }
 
+    public function candidateCard()
+    {
+        return $this->hasMany(CandidateCard::class);
+    }
+
     public function isAllApproved()
     {
         $request = $this->requestApproval;

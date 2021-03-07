@@ -43,4 +43,9 @@ class Talent extends Model
     {
         return $this->belongsTo(User::class, 'candidate_id');
     }
+
+    public function talents()
+    {
+        return $this->hasMany(CandidateCard::class);
+    }
 }

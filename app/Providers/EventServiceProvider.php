@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\CandidateCard;
 use App\Models\EmployeeRequestForm;
+use App\Observers\CandidateCardObserver;
 use App\Observers\EmployeeRequestFormObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -30,5 +32,6 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         EmployeeRequestForm::observe(EmployeeRequestFormObserver::class);
+        CandidateCard::observe(CandidateCardObserver::class);
     }
 }

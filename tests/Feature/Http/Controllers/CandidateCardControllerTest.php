@@ -7,8 +7,13 @@ use App\Models\CandidateCard;
 use App\Models\EmployeeRequestForm;
 use App\Models\Talent;
 use App\Models\User;
+use Database\Seeders\CardStatusSeeder;
 use Database\Seeders\DatabaseSeeder;
+use Database\Seeders\EmployeeRequestFormSeeder;
+use Database\Seeders\RequestApprovalSeeder;
 use Database\Seeders\RoleSeeder;
+use Database\Seeders\TalentSeeder;
+use Database\Seeders\UserSeeder;
 use Generator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -24,7 +29,12 @@ class CandidateCardControllerTest extends TestCase
         parent::setUp();
 
         $this->seed([
-            DatabaseSeeder::class
+            RoleSeeder::class,
+            CardStatusSeeder::class,
+            UserSeeder::class,
+            EmployeeRequestFormSeeder::class,
+            TalentSeeder::class,
+            RequestApprovalSeeder::class,
         ]);
     }
 
@@ -43,7 +53,11 @@ class CandidateCardControllerTest extends TestCase
      * */
     public function these_actions_is_protected_by_middleware(string $action, string $middleware)
     {
-        $this->assertActionUsesMiddleware(CandidateCardController::class, $action, $middleware);
+        $this->assertActionUsesMiddleware(
+            CandidateCardController::class,
+            $action,
+            [$middleware]
+        );
     }
 
     /** @test */
@@ -52,12 +66,27 @@ class CandidateCardControllerTest extends TestCase
         $pic = $this->createPicUser();
         $card = $this->createCard($pic);
 
-        $this->assertDatabaseHas('employee_request_forms', [
+        $this->assertDatabaseHas('candidate_cards', [
             'id' => $card->id,
             'pic_id' => $pic->id,
-            'last_updated_by' => $pic->id
+            'last_updated_by_id' => $pic->id
         ]);
     }
+
+    // /** @test */
+    // public function pic_can_list_all_cards()
+    // {
+    //     $picOne = $this->createPicUser();
+    //     $picTwo = $this->createPicUser();
+
+    //     $this->createCard($picOne);
+    //     $this->createCard($picTwo);
+
+    //     $count = CandidateCard::all()->count();
+    //     $res = $this->actingAs($picOne)
+    //         ->getJson(route('candidate-cards.index'));
+    //     $this->assertEquals($count, $res['meta']['total']);
+    // }
 
     /** @test */
     public function leader_can_list_his_cards_associated_with_his_erfs()
@@ -83,25 +112,52 @@ class CandidateCardControllerTest extends TestCase
         $card = $this->createCard($pic);
         $talent = Talent::all()->random(1)->first();
         $payload = [
-            'talent_id' => $talent->id
+            'talent_id' => $talent->id,
+            'proceed' => true
         ];
 
         $this->actingAs($pic)
             ->patchJson(route(
-                'candidate-cards',
+                'candidate-cards.update',
                 ['candidate_card' => $card->id]
             ), $payload)
             ->assertOk();
 
-        $this->assertDatabaseHas('candidate-cards', [
+        $this->assertDatabaseHas('candidate_cards', [
             'id' => $card->id,
             'talent_id' => $talent->id
         ]);
     }
 
     /** @test */
+    public function status_changed_after_talent_suggestion()
+    {
+        $pic = $this->createPicUser();
+        $card = $this->createCard($pic);
+        $talent = Talent::all()->random(1)->first();
+        $payload = [
+            'talent_id' => $talent->id,
+            'proceed' => true
+        ];
+
+        $this->actingAs($pic)
+            ->patchJson(route(
+                'candidate-cards.update',
+                ['candidate_card' => $card->id]
+            ), $payload);
+
+        $card = CandidateCard::find($card->id);
+        $this->assertEquals(
+            config('const.CARD_STATUS_ID.LEADER_APPROVAL_TALENT'),
+            $card->card_status_id,
+            'status not changed to waiting for leader approval talent'
+        );
+    }
+
+    /** @test */
     public function candidate_can_show_his_associated_card()
     {
+        $this->withoutExceptionHandling();
         $pic = $this->createPicUser();
         $card = $this->createCard($pic);
         $candidate = User::candidates()->get()
@@ -112,7 +168,7 @@ class CandidateCardControllerTest extends TestCase
         $card->save();
 
         $this->actingAs($candidate)
-            ->getJson('candidate-cards', ['candidate_card' => $card->id])
+            ->getJson(route('candidate-cards.show', ['candidate_card' => $card->id]))
             ->assertOk()
             ->assertJsonFragment([
                 'candidate_id' => $candidate->id
@@ -121,7 +177,7 @@ class CandidateCardControllerTest extends TestCase
 
     private function getOneErf(): EmployeeRequestForm
     {
-        return EmployeeRequestForm::allAproved()
+        return EmployeeRequestForm::allApproved()
             ->get()
             ->random(1)
             ->first();
@@ -141,7 +197,7 @@ class CandidateCardControllerTest extends TestCase
             'employee_request_form_id' => $erf->id,
         ])->make();
 
-        $res = $this->postJson(route('candidate-cards.store'), $payload)
+        $res = $this->postJson(route('candidate-cards.store'), json_decode($payload, true))
             ->assertCreated();
 
         return CandidateCard::find($res['id']);
