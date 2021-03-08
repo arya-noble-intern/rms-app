@@ -1,71 +1,62 @@
 <template>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                RMS
-            </a>
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto"></ul>
-
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item dropdown">
-                        <a
-                            id="navbarDropdown"
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-haspopup="true"
-                            aria-expanded="false"
-                        >
-                            {{ ME.name }}
-                        </a>
-
-                        <ul
-                            class="dropdown-menu "
-                            aria-labelledby="navbarDropdown"
-                        >
-                            <li>
-                                <router-link
-                                    :to="{ name: 'home' }"
-                                    class="dropdown-item"
-                                    >Home</router-link
-                                >
-                            </li>
-                            <li>
-                                <router-link
-                                    :to="{ name: 'about' }"
-                                    class="dropdown-item"
-                                    >About</router-link
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    class="dropdown-item text-decoration-none pe-auto"
-                                    href="javascript:void(0)"
-                                    @click="logout()"
-                                >
-                                    Logout
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+    <div>
+        <nav
+            class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary border-bottom border-warning border-3"
+        >
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"
+                    ><img
+                        src="/logo-white.png"
+                        alt="aryanoble logo"
+                        style="max-width: 45px"
+                /></a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarText"
+                    aria-controls="navbarText"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <i class="fas fa-angle-down"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-4">
+                        <li class="nav-item mt-2 mt-lg-0">
+                            <a
+                                v-if="ME.data"
+                                class="nav-link disabled text-white"
+                                href="javascript:void(0)"
+                            >
+                                <i class="fas fa-user me-2"></i>
+                                {{ ME.data.name }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                class="nav-link"
+                                href="javascript:void(0)"
+                                @click="logout"
+                                >Logout</a
+                            >
+                        </li>
+                    </ul>
+                </div>
             </div>
+        </nav>
+
+        <div class="nav-scroller bg--body shadow-4">
+            <nav class="nav nav-underline" aria-label="Secondary navigation">
+                <router-link :to="{ name: 'home' }" class="nav-link"
+                    >Home</router-link
+                >
+                <router-link :to="{ name: 'about' }" class="nav-link"
+                    >About</router-link
+                >
+            </nav>
         </div>
-    </nav>
+    </div>
 </template>
 
 <script>
@@ -93,4 +84,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.router-link-exact-active {
+    color: #007bff !important;
+}
+</style>
