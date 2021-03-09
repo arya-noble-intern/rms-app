@@ -226,103 +226,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -341,7 +244,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
-    ME: "user/ME"
+    ME: "user/ME",
+    ERFS: "employeeRequestForm/ERFS"
   })), {}, {
     roleName: function roleName() {
       if (Object.keys(this.ME).length) {
@@ -748,185 +652,77 @@ var render = function() {
                       _c("div", { staticClass: "col-12 col-md-6" }, [
                         _vm._m(0),
                         _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "my-3 p-3 bg-white rounded shadow-1-strong"
-                          },
-                          [
-                            _c(
-                              "h6",
-                              { staticClass: "border-bottom pb-2 mb-0" },
-                              [
-                                _vm._v(
-                                  "\n                                Recent updates\n                            "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
+                        _vm.ERFS.data
+                          ? _c(
                               "div",
-                              { staticClass: "d-flex text-muted pt-3" },
+                              {
+                                staticClass:
+                                  "my-3 p-3 bg-white rounded shadow-1-strong"
+                              },
                               [
                                 _c(
-                                  "svg",
-                                  {
-                                    staticClass:
-                                      "bd-placeholder-img flex-shrink-0 me-2 rounded",
-                                    attrs: {
-                                      width: "32",
-                                      height: "32",
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      role: "img",
-                                      "aria-label": "Placeholder: 32x32",
-                                      preserveAspectRatio: "xMidYMid slice",
-                                      focusable: "false"
-                                    }
-                                  },
+                                  "h6",
+                                  { staticClass: "border-bottom pb-2 mb-0" },
                                   [
-                                    _c("title", [_vm._v("Placeholder")]),
-                                    _vm._v(" "),
-                                    _c("rect", {
-                                      attrs: {
-                                        width: "100%",
-                                        height: "100%",
-                                        fill: "#007bff"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "text",
-                                      {
-                                        attrs: {
-                                          x: "50%",
-                                          y: "50%",
-                                          fill: "#007bff",
-                                          dy: ".3em"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                        32x32\n                                    "
-                                        )
-                                      ]
+                                    _vm._v(
+                                      "\n                                Recent updates\n                            "
                                     )
                                   ]
                                 ),
+                                _vm._v(" "),
+                                _vm._l(_vm.ERFS.data.slice(0, 3), function(
+                                  item
+                                ) {
+                                  return _c(
+                                    "div",
+                                    {
+                                      key: item.id,
+                                      staticClass: "d-flex text-muted pt-3"
+                                    },
+                                    [
+                                      _c("i", {
+                                        staticClass:
+                                          "ri-arrow-right-s-fill ri-2x bd-placeholder-img flex-shrink-0 me-2"
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "p",
+                                        {
+                                          staticClass:
+                                            "pb-3 mb-0 small lh-sm border-bottom"
+                                        },
+                                        [
+                                          _c(
+                                            "strong",
+                                            {
+                                              staticClass:
+                                                "d-block text-gray-dark"
+                                            },
+                                            [_vm._v(_vm._s(item.leader.name))]
+                                          ),
+                                          _vm._v(
+                                            "\n                                        " +
+                                              _vm._s(item.title) +
+                                              " "
+                                          ),
+                                          _c("br"),
+                                          _vm._v(" "),
+                                          _c("small", [
+                                            _vm._v(
+                                              _vm._s(item.dates.created_at_diff)
+                                            )
+                                          ])
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                }),
                                 _vm._v(" "),
                                 _vm._m(1)
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "d-flex text-muted pt-3" },
-                              [
-                                _c(
-                                  "svg",
-                                  {
-                                    staticClass:
-                                      "bd-placeholder-img flex-shrink-0 me-2 rounded",
-                                    attrs: {
-                                      width: "32",
-                                      height: "32",
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      role: "img",
-                                      "aria-label": "Placeholder: 32x32",
-                                      preserveAspectRatio: "xMidYMid slice",
-                                      focusable: "false"
-                                    }
-                                  },
-                                  [
-                                    _c("title", [_vm._v("Placeholder")]),
-                                    _vm._v(" "),
-                                    _c("rect", {
-                                      attrs: {
-                                        width: "100%",
-                                        height: "100%",
-                                        fill: "#e83e8c"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "text",
-                                      {
-                                        attrs: {
-                                          x: "50%",
-                                          y: "50%",
-                                          fill: "#e83e8c",
-                                          dy: ".3em"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                        32x32\n                                    "
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _vm._m(2)
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "d-flex text-muted pt-3" },
-                              [
-                                _c(
-                                  "svg",
-                                  {
-                                    staticClass:
-                                      "bd-placeholder-img flex-shrink-0 me-2 rounded",
-                                    attrs: {
-                                      width: "32",
-                                      height: "32",
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      role: "img",
-                                      "aria-label": "Placeholder: 32x32",
-                                      preserveAspectRatio: "xMidYMid slice",
-                                      focusable: "false"
-                                    }
-                                  },
-                                  [
-                                    _c("title", [_vm._v("Placeholder")]),
-                                    _vm._v(" "),
-                                    _c("rect", {
-                                      attrs: {
-                                        width: "100%",
-                                        height: "100%",
-                                        fill: "#6f42c1"
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _c(
-                                      "text",
-                                      {
-                                        attrs: {
-                                          x: "50%",
-                                          y: "50%",
-                                          fill: "#6f42c1",
-                                          dy: ".3em"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                        32x32\n                                    "
-                                        )
-                                      ]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _vm._m(3)
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _vm._m(4)
-                          ]
-                        )
+                              ],
+                              2
+                            )
+                          : _vm._e()
                       ]),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-12 col-md-6" })
@@ -952,24 +748,16 @@ var staticRenderFns = [
           "d-flex align-items-center p-3 my-3 text-white bg-purple rounded-2 shadow-2-strong"
       },
       [
-        _c("img", {
-          staticClass: "me-3",
-          attrs: {
-            src: "/docs/5.0/assets/brand/bootstrap-logo-white.svg",
-            alt: "",
-            width: "48",
-            height: "38"
-          }
-        }),
+        _c("i", { staticClass: "ri-folder-received-fill ri-2x me-3" }),
         _vm._v(" "),
         _c("div", { staticClass: "lh-1" }, [
           _c("h1", { staticClass: "h6 mb-0 text-white lh-1" }, [
             _vm._v(
-              "\n                                    Bootstrap\n                                "
+              "\n                                    OVERVIEW\n                                "
             )
           ]),
           _vm._v(" "),
-          _c("small", [_vm._v("Since 2011")])
+          _c("small", [_vm._v("Employee Request Forms")])
         ])
       ]
     )
@@ -978,47 +766,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "pb-3 mb-0 small lh-sm border-bottom" }, [
-      _c("strong", { staticClass: "d-block text-gray-dark" }, [
-        _vm._v("@username")
-      ]),
-      _vm._v(
-        "\n                                    Some representative placeholder content,\n                                    with some information about this user.\n                                    Imagine this being some sort of status\n                                    update, perhaps?\n                                "
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "pb-3 mb-0 small lh-sm border-bottom" }, [
-      _c("strong", { staticClass: "d-block text-gray-dark" }, [
-        _vm._v("@username")
-      ]),
-      _vm._v(
-        "\n                                    Some more representative placeholder\n                                    content, related to this other user.\n                                    Another status update, perhaps.\n                                "
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "pb-3 mb-0 small lh-sm border-bottom" }, [
-      _c("strong", { staticClass: "d-block text-gray-dark" }, [
-        _vm._v("@username")
-      ]),
-      _vm._v(
-        "\n                                    This user also gets some representative\n                                    placeholder content. Maybe they did\n                                    something interesting, and you really\n                                    want to highlight this in the recent\n                                    updates.\n                                "
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("small", { staticClass: "d-block text-end mt-3" }, [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("All updates")])
+      _c("a", { attrs: { href: "#" } }, [_vm._v("View all")])
     ])
   }
 ]

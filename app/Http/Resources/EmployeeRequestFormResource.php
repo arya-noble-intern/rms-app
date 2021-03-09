@@ -37,7 +37,11 @@ class EmployeeRequestFormResource extends JsonResource
             'working_hours' => $this->working_hours,
             'position' => $this->position,
             'company' => $this->company,
-            'leader' => new UserResource($this->user)
+            'leader' => new UserResource($this->user),
+            'dates' => [
+                'created_at' => $this->created_at,
+                'created_at_diff' => $this->created_at->diffForHumans()
+            ]
         ];
     }
 }
