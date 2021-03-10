@@ -29,7 +29,7 @@ class EmployeeRequestFormController extends Controller
             function ($query) {
                 return $query->mine();
             }
-        )->paginate(30);
+        )->latest()->paginate(30);
 
         return EmployeeRequestFormResource::collection($forms);
     }
