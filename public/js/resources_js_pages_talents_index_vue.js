@@ -211,6 +211,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -226,18 +233,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              if (Object.keys(_this.TALENTS).length) {
-                _context.next = 3;
-                break;
-              }
-
-              _context.next = 3;
+              _context.next = 2;
               return _this.getTalents();
 
-            case 3:
+            case 2:
               _this.parameters.page = _this.TALENTS.meta.current_page;
 
-            case 4:
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -644,56 +646,82 @@ var render = function() {
       _vm.TALENTS.data
         ? _c("div", [
             _c("div", { staticClass: "row mb-2" }, [
-              _c("div", { staticClass: "col-12 text-end" }, [
-                _c("div", { staticClass: "dropdown" }, [
+              _c(
+                "div",
+                { staticClass: "col-12 d-flex justify-content-between" },
+                [
+                  _c("div", { staticClass: "dropdown" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-info text-white btn-sm dropdown-toggle",
+                        attrs: {
+                          type: "button",
+                          id: "dropdownSort",
+                          "data-mdb-toggle": "dropdown",
+                          "aria-expanded": "false"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Sort By\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "dropdown-menu",
+                        attrs: { "aria-labelledby": "dropdownSort" }
+                      },
+                      _vm._l(_vm.sortBySelection, function(item, index) {
+                        return _c("li", { key: index }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "dropdown-item",
+                              class: {
+                                active: _vm.currentSort(item.name, item.dir)
+                              },
+                              attrs: { href: "javascript:void(0)" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sortTalents(item.name, item.dir)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(item.name) + " - " + _vm._s(item.dir)
+                              )
+                            ]
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  ]),
+                  _vm._v(" "),
                   _c(
-                    "button",
+                    "router-link",
                     {
-                      staticClass: "btn btn-primary btn-sm dropdown-toggle",
+                      staticClass: "btn btn-primary btn-sm btn-rounded",
                       attrs: {
-                        type: "button",
-                        id: "dropdownSort",
-                        "data-mdb-toggle": "dropdown",
-                        "aria-expanded": "false"
+                        to: { name: "talents-create" },
+                        tag: "button",
+                        type: "button"
                       }
                     },
                     [
-                      _vm._v(
-                        "\n                        Sort By\n                    "
-                      )
+                      _c("i", { staticClass: "ri-user-add-line me-2" }),
+                      _vm._v("Create\n                    Talent")
                     ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "ul",
-                    {
-                      staticClass: "dropdown-menu",
-                      attrs: { "aria-labelledby": "dropdownSort" }
-                    },
-                    _vm._l(_vm.sortBySelection, function(item, index) {
-                      return _c("li", { key: index }, [
-                        _c(
-                          "a",
-                          {
-                            staticClass: "dropdown-item",
-                            class: {
-                              active: _vm.currentSort(item.name, item.dir)
-                            },
-                            attrs: { href: "javascript:void(0)" },
-                            on: {
-                              click: function($event) {
-                                return _vm.sortTalents(item.name, item.dir)
-                              }
-                            }
-                          },
-                          [_vm._v(_vm._s(item.name) + " - " + _vm._s(item.dir))]
-                        )
-                      ])
-                    }),
-                    0
                   )
-                ])
-              ])
+                ],
+                1
+              )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "table-responsive" }, [
@@ -735,7 +763,35 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _vm._m(1, true)
+                      _c("td", [
+                        _c(
+                          "div",
+                          { staticClass: "d-flex justify-content-end" },
+                          [
+                            _c(
+                              "router-link",
+                              {
+                                staticClass:
+                                  "btn btn-info text-white btn-sm px-3 mx-2 d-flex align-items-center",
+                                attrs: {
+                                  to: {
+                                    name: "talents-show",
+                                    params: { id: item.id }
+                                  },
+                                  tag: "button",
+                                  type: "button"
+                                }
+                              },
+                              [
+                                _c("i", { staticClass: "ri-eye-line me-2" }),
+                                _vm._v(" "),
+                                _c("span", [_vm._v("Details")])
+                              ]
+                            )
+                          ],
+                          1
+                        )
+                      ])
                     ])
                   }),
                   0
@@ -872,37 +928,6 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Created At")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("div", { staticClass: "d-flex justify-content-end" }, [
-        _c(
-          "button",
-          {
-            staticClass:
-              "btn btn-primary btn-sm px-3 mx-2 d-flex align-items-center",
-            attrs: { type: "button" }
-          },
-          [
-            _c("i", { staticClass: "ri-eye-line me-2" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Details")])
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-danger btn-sm px-3 mx-2",
-            attrs: { type: "button" }
-          },
-          [_c("i", { staticClass: "fas fa-times" })]
-        )
       ])
     ])
   }

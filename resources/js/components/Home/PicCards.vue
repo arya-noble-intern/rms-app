@@ -2,7 +2,7 @@
     <section>
         <div class="row">
             <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card shadow-1">
+                <div class="card shadow-4">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div class="align-self-center">
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card shadow-1">
+                <div class="card shadow-4">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div class="align-self-center">
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card shadow-1">
+                <div class="card shadow-4">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div class="align-self-center">
@@ -79,7 +79,7 @@
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card shadow-1">
+                <div class="card shadow-4">
                     <div class="card-body">
                         <div class="d-flex justify-content-between px-md-1">
                             <div class="align-self-center">

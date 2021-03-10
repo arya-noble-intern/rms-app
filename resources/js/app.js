@@ -9,8 +9,6 @@ import store from "./store/index";
 import App from "./App.vue";
 import VueToast from "vue-toast-notification";
 import VueSkeletonLoader from "skeleton-loader-vue";
-import * as mdb from "mdb-ui-kit"; // lib
-
 import "vue-toast-notification/dist/theme-sugar.css";
 
 Vue.use(AppConst);
@@ -18,10 +16,12 @@ Vue.use(VueRouter);
 Vue.use(VueToast);
 Vue.use(VueSkeletonLoader);
 Vue.use(require("vue-moment"));
+import * as mdb from "mdb-ui-kit"; // lib
 
 const app = new Vue({
     el: "#app",
     router,
     store,
+    mdb,
     components: { App }
 });

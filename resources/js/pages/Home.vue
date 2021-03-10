@@ -37,7 +37,7 @@ export default {
     mounted() {
         this.GET_ERFS();
         this.GET_CANDIDATE_CARDS();
-        this.GET_TALENTS();
+        this.GET_TALENTS({});
 
         if (!Object.keys(this.ME).length) {
             this.GET_ME();

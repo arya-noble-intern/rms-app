@@ -10,6 +10,16 @@ const mix = require("laravel-mix");
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                test: /\.svg$/,
+                loader: "vue-svg-loader" // `vue-svg` if using webpack 1.x
+            }
+        ]
+    }
+});
 
 mix.js("resources/js/app.js", "public/js")
     .vue()

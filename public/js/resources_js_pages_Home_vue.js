@@ -437,7 +437,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     this.GET_ERFS();
     this.GET_CANDIDATE_CARDS();
-    this.GET_TALENTS();
+    this.GET_TALENTS({});
 
     if (!Object.keys(this.ME).length) {
       this.GET_ME();
@@ -1231,7 +1231,7 @@ var render = function() {
   return _c("section", [
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-xl-3 col-sm-6 col-12 mb-4" }, [
-        _c("div", { staticClass: "card shadow-1" }, [
+        _c("div", { staticClass: "card shadow-4" }, [
           _c("div", { staticClass: "card-body" }, [
             _c(
               "div",
@@ -1263,7 +1263,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-xl-3 col-sm-6 col-12 mb-4" }, [
-        _c("div", { staticClass: "card shadow-1" }, [
+        _c("div", { staticClass: "card shadow-4" }, [
           _c("div", { staticClass: "card-body" }, [
             _c(
               "div",
@@ -1302,7 +1302,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-xl-3 col-sm-6 col-12 mb-4" }, [
-        _c("div", { staticClass: "card shadow-1" }, [
+        _c("div", { staticClass: "card shadow-4" }, [
           _c("div", { staticClass: "card-body" }, [
             _c(
               "div",
@@ -1341,7 +1341,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-xl-3 col-sm-6 col-12 mb-4" }, [
-        _c("div", { staticClass: "card shadow-1" }, [
+        _c("div", { staticClass: "card shadow-4" }, [
           _c("div", { staticClass: "card-body" }, [
             _c(
               "div",

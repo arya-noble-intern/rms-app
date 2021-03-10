@@ -20,4 +20,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import "../scss/mdb.free.scss";
+</style>

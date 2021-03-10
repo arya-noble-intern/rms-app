@@ -3,10 +3,10 @@
         <page-heading title="talents" />
         <div v-if="TALENTS.data">
             <div class="row mb-2">
-                <div class="col-12 text-end">
+                <div class="col-12 d-flex justify-content-between">
                     <div class="dropdown">
                         <button
-                            class="btn btn-primary btn-sm dropdown-toggle"
+                            class="btn btn-info text-white btn-sm dropdown-toggle"
                             type="button"
                             id="dropdownSort"
                             data-mdb-toggle="dropdown"
@@ -34,6 +34,14 @@
                             </li>
                         </ul>
                     </div>
+                    <router-link
+                        :to="{ name: 'talents-create' }"
+                        tag="button"
+                        type="button"
+                        class="btn btn-primary btn-sm btn-rounded"
+                        ><i class="ri-user-add-line me-2"></i>Create
+                        Talent</router-link
+                    >
                 </div>
             </div>
             <div class="table-responsive">
@@ -66,19 +74,18 @@
                             </td>
                             <td>
                                 <div class="d-flex justify-content-end">
-                                    <button
+                                    <router-link
+                                        :to="{
+                                            name: 'talents-show',
+                                            params: { id: item.id }
+                                        }"
+                                        tag="button"
                                         type="button"
-                                        class="btn btn-primary btn-sm px-3 mx-2 d-flex align-items-center"
+                                        class="btn btn-info text-white btn-sm px-3 mx-2 d-flex align-items-center"
                                     >
                                         <i class="ri-eye-line me-2"></i>
                                         <span>Details</span>
-                                    </button>
-                                    <button
-                                        type="button"
-                                        class="btn btn-danger btn-sm px-3 mx-2"
-                                    >
-                                        <i class="fas fa-times"></i>
-                                    </button>
+                                    </router-link>
                                 </div>
                             </td>
                         </tr>
@@ -161,9 +168,7 @@ export default {
     name: "TalentsPage",
     components: { PageHeading },
     async mounted() {
-        if (!Object.keys(this.TALENTS).length) {
-            await this.getTalents();
-        }
+        await this.getTalents();
 
         this.parameters.page = this.TALENTS.meta.current_page;
     },
