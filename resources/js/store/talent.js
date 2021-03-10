@@ -19,8 +19,8 @@ const talent = {
     },
 
     actions: {
-        async GET_TALENTS({ commit }) {
-            const res = await axios.get("/api/talents");
+        async GET_TALENTS({ commit }, page = 1) {
+            const res = await axios.get(`/api/talents?page=${page}`);
             commit("SET_TALENTS", res.data);
         }
     }

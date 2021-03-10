@@ -37,7 +37,9 @@
                 </div>
             </template>
             <small class="d-block text-end mt-3">
-                <a href="#">View all</a>
+                <router-link :to="{ name: 'talents' }"
+                    >Go to talent pool</router-link
+                >
             </small>
         </div>
     </section>

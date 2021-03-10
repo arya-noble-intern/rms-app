@@ -22,7 +22,7 @@ class TalentController extends Controller
      */
     public function index()
     {
-        return TalentResource::collection(Talent::latest()->paginate(30));
+        return TalentResource::collection(Talent::latest()->paginate(3));
     }
 
     /**

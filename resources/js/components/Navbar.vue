@@ -51,8 +51,8 @@
                 <router-link :to="{ name: 'home' }" class="nav-link"
                     >Home</router-link
                 >
-                <router-link :to="{ name: 'about' }" class="nav-link"
-                    >About</router-link
+                <router-link :to="{ name: 'talents' }" class="nav-link"
+                    >Talent Pool</router-link
                 >
             </nav>
         </div>

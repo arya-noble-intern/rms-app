@@ -1,6 +1,6 @@
 <template>
     <div class="pb-5">
-        <h1 class="h3 text-uppercase mb-4">Home</h1>
+        <page-heading title="home" />
         <div v-if="ME.data">
             <div v-if="roleName == $getConst('PIC')">
                 <pic-cards />
@@ -24,12 +24,15 @@ import { mapActions, mapGetters } from "vuex";
 import PicCards from "../components/Home/PicCards.vue";
 import OverviewErfs from "../components/Home/OverviewErfs.vue";
 import OverviewTalents from "../components/Home/OverviewTalents.vue";
+import PageHeading from "../components/Core/PageHeading.vue";
+
 export default {
     name: "home",
     components: {
         PicCards,
         OverviewErfs,
-        OverviewTalents
+        OverviewTalents,
+        PageHeading
     },
     mounted() {
         this.GET_ERFS();
