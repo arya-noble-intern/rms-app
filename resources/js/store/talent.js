@@ -19,8 +19,13 @@ const talent = {
     },
 
     actions: {
-        async GET_TALENTS({ commit }, page = 1) {
-            const res = await axios.get(`/api/talents?page=${page}`);
+        async GET_TALENTS(
+            { commit },
+            { page = 1, sort = "created_at", sortDir = "desc" }
+        ) {
+            const res = await axios.get(
+                `/api/talents?page=${page}&sortBy=${sort}&sortDir=${sortDir}`
+            );
             commit("SET_TALENTS", res.data);
         }
     }

@@ -20,9 +20,13 @@ class TalentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return TalentResource::collection(Talent::latest()->paginate(3));
+        $sortBy = $request->get('sortBy') ?? 'created_at';
+        $sortDir = $request->get('sortDir') ?? 'desc';
+
+        $talents = Talent::orderBy($sortBy, $sortDir)->paginate(10);
+        return TalentResource::collection($talents);
     }
 
     /**

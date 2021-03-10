@@ -11,11 +11,11 @@
                 <small>Employee Request Forms</small>
             </div>
         </div>
-        <div v-if="ERFS.data" class="my-3 p-3 bg-white rounded shadow-1-strong">
+        <div class="my-3 p-3 bg-white rounded shadow-1-strong">
             <h6 class="border-bottom pb-2 mb-0">
                 Recent updates
             </h6>
-            <template>
+            <template v-if="ERFS.data">
                 <div
                     v-for="item in ERFS.data.slice(0, 3)"
                     :key="item.id"
@@ -33,6 +33,11 @@
                     </p>
                 </div>
             </template>
+            <template v-else>
+                <div class="mt-4" v-for="i in 3" :key="i">
+                    <card-table-skeleton />
+                </div>
+            </template>
             <small class="d-block text-end mt-3">
                 <a href="#">View all</a>
             </small>
@@ -42,8 +47,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import CardTableSkeleton from "../Core/CardTableSkeleton";
 export default {
     name: "OverviewErfs",
+    components: {
+        CardTableSkeleton
+    },
     computed: {
         ...mapGetters({
             ERFS: "employeeRequestForm/ERFS"

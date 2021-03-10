@@ -129,12 +129,10 @@ class PicUserManagementControllerTest extends TestCase
             )
             ->assertOk();
 
-        $this->app['auth']->guard('web')->logout();
-
-        $this->post('/login', [
-            'email' => $user->email,
-            'password' => $payload['password']
-        ])->assertRedirect(route('home'));
+        $this->assertDatabaseHas('users', [
+            'name' => 'updatedName',
+            'password' => bcrypt('updated')
+        ]);
     }
 
     /** @test */

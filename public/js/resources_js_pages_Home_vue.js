@@ -1,5 +1,51 @@
 (self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_pages_Home_vue"],{
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Core/CardTableSkeleton.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Core/CardTableSkeleton.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "CardTableSkeleton"
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Core/PageHeading.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Core/PageHeading.vue?vue&type=script&lang=js& ***!
@@ -40,7 +86,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _Core_CardTableSkeleton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Core/CardTableSkeleton */ "./resources/js/components/Core/CardTableSkeleton.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -89,10 +136,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "OverviewErfs",
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
+  components: {
+    CardTableSkeleton: _Core_CardTableSkeleton__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
     ERFS: "employeeRequestForm/ERFS"
   }))
 });
@@ -110,7 +166,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _Core_CardTableSkeleton__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Core/CardTableSkeleton */ "./resources/js/components/Core/CardTableSkeleton.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -164,10 +221,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "OverviewTalents",
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
+  components: {
+    CardTableSkeleton: _Core_CardTableSkeleton__WEBPACK_IMPORTED_MODULE_0__.default
+  },
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
     TALENTS: "talent/TALENTS"
   }))
 });
@@ -402,6 +465,45 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./resources/js/components/Core/CardTableSkeleton.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/Core/CardTableSkeleton.vue ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CardTableSkeleton_vue_vue_type_template_id_0c6815b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CardTableSkeleton.vue?vue&type=template&id=0c6815b4& */ "./resources/js/components/Core/CardTableSkeleton.vue?vue&type=template&id=0c6815b4&");
+/* harmony import */ var _CardTableSkeleton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CardTableSkeleton.vue?vue&type=script&lang=js& */ "./resources/js/components/Core/CardTableSkeleton.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
+  _CardTableSkeleton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _CardTableSkeleton_vue_vue_type_template_id_0c6815b4___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CardTableSkeleton_vue_vue_type_template_id_0c6815b4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Core/CardTableSkeleton.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Core/PageHeading.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/Core/PageHeading.vue ***!
@@ -597,6 +699,22 @@ component.options.__file = "resources/js/pages/Home.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Core/CardTableSkeleton.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/Core/CardTableSkeleton.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardTableSkeleton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CardTableSkeleton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Core/CardTableSkeleton.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CardTableSkeleton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Core/PageHeading.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/Core/PageHeading.vue?vue&type=script&lang=js& ***!
@@ -674,6 +792,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Home.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/pages/Home.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+
+/***/ }),
+
+/***/ "./resources/js/components/Core/CardTableSkeleton.vue?vue&type=template&id=0c6815b4&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/Core/CardTableSkeleton.vue?vue&type=template&id=0c6815b4& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardTableSkeleton_vue_vue_type_template_id_0c6815b4___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardTableSkeleton_vue_vue_type_template_id_0c6815b4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CardTableSkeleton_vue_vue_type_template_id_0c6815b4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CardTableSkeleton.vue?vue&type=template&id=0c6815b4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Core/CardTableSkeleton.vue?vue&type=template&id=0c6815b4&");
+
 
 /***/ }),
 
@@ -762,6 +897,64 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Core/CardTableSkeleton.vue?vue&type=template&id=0c6815b4&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Core/CardTableSkeleton.vue?vue&type=template&id=0c6815b4& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: " d-flex flex-column" }, [
+    _c(
+      "div",
+      { staticClass: "mb-2" },
+      [
+        _c("skeleton-loader-vue", {
+          attrs: { type: "rect", rounded: true, width: 100, height: 15 }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "mb-1" },
+      [
+        _c("skeleton-loader-vue", {
+          attrs: { type: "rect", rounded: true, width: 250, height: 10 }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "mb-2" },
+      [
+        _c("skeleton-loader-vue", {
+          attrs: { type: "rect", rounded: true, width: 300, height: 10 }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Core/PageHeading.vue?vue&type=template&id=3046aa64&":
 /*!****************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Core/PageHeading.vue?vue&type=template&id=3046aa64& ***!
@@ -810,16 +1003,16 @@ var render = function() {
   return _c("section", { attrs: { id: "overview-erf" } }, [
     _vm._m(0),
     _vm._v(" "),
-    _vm.ERFS.data
-      ? _c(
-          "div",
-          { staticClass: "my-3 p-3 bg-white rounded shadow-1-strong" },
-          [
-            _c("h6", { staticClass: "border-bottom pb-2 mb-0" }, [
-              _vm._v("\n            Recent updates\n        ")
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.ERFS.data.slice(0, 3), function(item) {
+    _c(
+      "div",
+      { staticClass: "my-3 p-3 bg-white rounded shadow-1-strong" },
+      [
+        _c("h6", { staticClass: "border-bottom pb-2 mb-0" }, [
+          _vm._v("\n            Recent updates\n        ")
+        ]),
+        _vm._v(" "),
+        _vm.ERFS.data
+          ? _vm._l(_vm.ERFS.data.slice(0, 3), function(item) {
               return _c(
                 "div",
                 { key: item.id, staticClass: "d-flex text-muted pt-3" },
@@ -848,13 +1041,20 @@ var render = function() {
                   )
                 ]
               )
+            })
+          : _vm._l(3, function(i) {
+              return _c(
+                "div",
+                { key: i, staticClass: "mt-4" },
+                [_c("card-table-skeleton")],
+                1
+              )
             }),
-            _vm._v(" "),
-            _vm._m(1)
-          ],
-          2
-        )
-      : _vm._e()
+        _vm._v(" "),
+        _vm._m(1)
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = [
@@ -915,16 +1115,16 @@ var render = function() {
   return _c("section", { attrs: { id: "overview-erf" } }, [
     _vm._m(0),
     _vm._v(" "),
-    _vm.TALENTS.data
-      ? _c(
-          "div",
-          { staticClass: "my-3 p-3 bg-white rounded shadow-1-strong" },
-          [
-            _c("h6", { staticClass: "border-bottom pb-2 mb-0" }, [
-              _vm._v("\n            Recent updates\n        ")
-            ]),
-            _vm._v(" "),
-            _vm._l(_vm.TALENTS.data.slice(0, 3), function(item) {
+    _c(
+      "div",
+      { staticClass: "my-3 p-3 bg-white rounded shadow-1-strong" },
+      [
+        _c("h6", { staticClass: "border-bottom pb-2 mb-0" }, [
+          _vm._v("\n            Recent updates\n        ")
+        ]),
+        _vm._v(" "),
+        _vm.TALENTS.data
+          ? _vm._l(_vm.TALENTS.data.slice(0, 3), function(item) {
               return _c(
                 "div",
                 { key: item.id, staticClass: "d-flex text-muted pt-3" },
@@ -956,22 +1156,29 @@ var render = function() {
                   )
                 ]
               )
+            })
+          : _vm._l(3, function(i) {
+              return _c(
+                "div",
+                { key: i, staticClass: "mt-4" },
+                [_c("card-table-skeleton")],
+                1
+              )
             }),
-            _vm._v(" "),
-            _c(
-              "small",
-              { staticClass: "d-block text-end mt-3" },
-              [
-                _c("router-link", { attrs: { to: { name: "talents" } } }, [
-                  _vm._v("Go to talent pool")
-                ])
-              ],
-              1
-            )
+        _vm._v(" "),
+        _c(
+          "small",
+          { staticClass: "d-block text-end mt-3" },
+          [
+            _c("router-link", { attrs: { to: { name: "talents" } } }, [
+              _vm._v("Go to Talent Pool")
+            ])
           ],
-          2
+          1
         )
-      : _vm._e()
+      ],
+      2
+    )
   ])
 }
 var staticRenderFns = [

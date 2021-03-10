@@ -11,14 +11,11 @@
                 <small>Talents</small>
             </div>
         </div>
-        <div
-            v-if="TALENTS.data"
-            class="my-3 p-3 bg-white rounded shadow-1-strong"
-        >
+        <div class="my-3 p-3 bg-white rounded shadow-1-strong">
             <h6 class="border-bottom pb-2 mb-0">
                 Recent updates
             </h6>
-            <template>
+            <template v-if="TALENTS.data">
                 <div
                     v-for="item in TALENTS.data.slice(0, 3)"
                     :key="item.id"
@@ -36,9 +33,14 @@
                     </p>
                 </div>
             </template>
+            <template v-else>
+                <div class="mt-4" v-for="i in 3" :key="i">
+                    <card-table-skeleton />
+                </div>
+            </template>
             <small class="d-block text-end mt-3">
                 <router-link :to="{ name: 'talents' }"
-                    >Go to talent pool</router-link
+                    >Go to Talent Pool</router-link
                 >
             </small>
         </div>
@@ -47,8 +49,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import CardTableSkeleton from "../Core/CardTableSkeleton";
 export default {
     name: "OverviewTalents",
+    components: {
+        CardTableSkeleton
+    },
     computed: {
         ...mapGetters({
             TALENTS: "talent/TALENTS"
