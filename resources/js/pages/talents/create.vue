@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 col-md-10 px-4 mx-auto">
                 <form @submit.prevent="saveTalent">
                     <div class="row mb-4">
                         <div class="col">

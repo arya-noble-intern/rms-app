@@ -43,6 +43,11 @@ const talent = {
         async GET_TALENT({ commit }, id) {
             const res = await axios.get(`/api/talents/${id}`);
             commit("SET_TALENT", res.data);
+        },
+        async UPDATE_TALENT({}, { id, formData }) {
+            await axios.post(`/api/talents/${id}?_method=PUT`, formData, {
+                headers: { "Content-Type": "multipart/form-data" }
+            });
         }
     }
 };

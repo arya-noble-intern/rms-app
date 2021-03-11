@@ -25,7 +25,7 @@ class TalentUpdateRequest extends FormRequest
     {
         return [
             'candidate_id' => 'nullable',
-            'name' => 'required|string',
+            'name' => 'sometimes|string',
             'source'  => 'nullable|string',
             'cv'  => 'nullable|file:size:5000',
             'address'  => 'nullable|string',

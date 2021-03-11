@@ -11,7 +11,7 @@
                             href="https://github.com/Jchann24"
                             class="link-secondary"
                             target="__blank"
-                            >Jchann <i class="ri-github-line"></i
+                            >Jchann24 <i class="ri-github-line"></i
                         ></a>
                     </small>
                 </div>

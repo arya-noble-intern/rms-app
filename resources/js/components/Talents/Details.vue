@@ -8,23 +8,34 @@
                 <a
                     type="button"
                     class="btn btn-secondary"
+                    :class="{ disabled: loading }"
                     :href="TALENT.data.cv"
                     target="_blank"
                     rel="noopener noreferrer"
+                    :disabled="loading"
                     >Download CV</a
                 >
-                <div class="mt-4 text-muted">
+                <div v-if="!loading" class="mt-4 text-muted">
                     <p class="mb-1">Created by {{ TALENT.data.pic.name }}</p>
                     <small
                         >Created at
                         {{
-                            TALENT.data.dates.created_at | moment("DD-MM-YYYY")
+                            TALENT.data.dates.created_at
+                                | moment("DD MMMM YYYY")
                         }}</small
                     >
                 </div>
+                <div v-else class="mt-4">
+                    <loading />
+                </div>
             </div>
-            <div class="col-12 col-md-7">
-                <table class="table table-borderless table-hover text-start">
+            <div
+                class="col-12 col-md-7 d-flex align-items-center justify-content-center mt-4 mt-md-0"
+            >
+                <table
+                    v-if="!loading"
+                    class="table table-borderless table-hover text-start"
+                >
                     <tbody>
                         <tr v-for="(name, index) in details" :key="index">
                             <th scope="row">{{ name }}</th>
@@ -33,6 +44,9 @@
                         </tr>
                     </tbody>
                 </table>
+                <div v-else>
+                    <loading />
+                </div>
             </div>
         </div>
     </div>
@@ -41,11 +55,13 @@
 <script>
 import UserProfileSvg from "../../assets/svg/UserProfile";
 import { mapActions, mapGetters } from "vuex";
+import Loading from "../../components/Core/Loading.vue";
 
 export default {
     name: "TalentsDetail",
     components: {
-        UserProfileSvg
+        UserProfileSvg,
+        Loading
     },
     mounted() {
         this.getTalent();

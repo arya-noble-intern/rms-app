@@ -69,7 +69,9 @@ class TalentController extends Controller
         $validated = $request->validated();
 
         $filename = $this->saveFile($request);
-        $validated['cv'] = $filename;
+        if ($filename) {
+            $validated['cv'] = $filename;
+        }
 
         $talent = $talent->update($validated);
         return Response::json($talent, 200);
@@ -83,6 +85,6 @@ class TalentController extends Controller
             $cv->storeAs('public/cv/', $filename, 'local');
         }
 
-        return $filename ?? '';
+        return $filename ?? false;
     }
 }
