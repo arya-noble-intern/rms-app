@@ -5,8 +5,15 @@
                 <div class="col-12 col-md">
                     <img class="mb-2" src="/logo.png" alt="" width="75" />
                     <small class="d-block mb-3 text-muted"
-                        >&copy; Arya Noble - 2021</small
-                    >
+                        >Arya Noble - 2021<br />
+                        &copy; Tailored by
+                        <a
+                            href="https://github.com/Jchann24"
+                            class="link-secondary"
+                            target="__blank"
+                            >Jchann <i class="ri-github-line"></i
+                        ></a>
+                    </small>
                 </div>
                 <div class="col-6 col-md">
                     <h5>Features</h5>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <page-heading title="talents" />
-        <div v-if="TALENTS.data">
+        <div v-if="TALENTS.data && !loading">
             <div class="row mb-2">
                 <div class="col-12 d-flex justify-content-between">
                     <div class="dropdown">
@@ -157,16 +157,24 @@
                 </table>
             </div>
         </div>
+        <div v-else>
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <loading />
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 import PageHeading from "../../components/Core/PageHeading.vue";
+import Loading from "../../components/Core/Loading.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
     name: "TalentsPage",
-    components: { PageHeading },
+    components: { PageHeading, Loading },
     async mounted() {
         await this.getTalents();
 

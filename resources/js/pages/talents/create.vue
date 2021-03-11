@@ -209,7 +209,7 @@
                         >
                             Save Talent
                         </button>
-                        <dot-loader v-else :color="'#f77f00'" />
+                        <loading v-else />
                     </div>
                 </form>
             </div>
@@ -222,10 +222,10 @@ import { Input } from "mdb-ui-kit";
 import { mapActions } from "vuex";
 import PageHeading from "../../components/Core/PageHeading.vue";
 import NewEntrySvg from "../../assets/svg/NewEntry.vue";
-import DotLoader from "vue-spinner/src/DotLoader.vue";
+import Loading from "../../components/Core/Loading.vue";
 export default {
     name: "CreateTalentPage",
-    components: { PageHeading, NewEntrySvg, DotLoader },
+    components: { PageHeading, NewEntrySvg, Loading },
     mounted() {
         this.initInput();
     },

@@ -17,7 +17,18 @@ const routes = [
     {
         path: "/talents/:id",
         component: () => import("../pages/talents/_id.vue"),
-        name: "talents-show"
+        children: [
+            {
+                path: "",
+                component: () => import("../components/Talents/Details.vue"),
+                name: "talents-show"
+            },
+            {
+                path: "edit",
+                component: () => import("../components/Talents/Edit.vue"),
+                name: "talents-show-edit"
+            }
+        ]
     }
 ];
 
