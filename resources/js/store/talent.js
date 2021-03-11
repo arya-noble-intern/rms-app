@@ -27,6 +27,11 @@ const talent = {
                 `/api/talents?page=${page}&sortBy=${sort}&sortDir=${sortDir}`
             );
             commit("SET_TALENTS", res.data);
+        },
+        async SAVE_TALENT({}, formData) {
+            await axios.post(`/api/talents`, formData, {
+                headers: { "Content-Type": "multipart/form-data" }
+            });
         }
     }
 };

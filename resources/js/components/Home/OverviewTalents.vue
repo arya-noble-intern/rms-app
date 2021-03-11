@@ -38,10 +38,13 @@
                     <card-table-skeleton />
                 </div>
             </template>
-            <small class="d-block text-end mt-3">
+            <small
+                class="d-block d-flex align-items-center justify-content-end mt-3"
+            >
                 <router-link :to="{ name: 'talents' }"
-                    >Go to Talent Pool</router-link
-                >
+                    >Go to Talent Pool
+                </router-link>
+                <i class="ri-arrow-right-s-line ms-2"></i>
             </small>
         </div>
     </section>

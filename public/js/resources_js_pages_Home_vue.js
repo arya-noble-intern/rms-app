@@ -223,6 +223,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -1168,11 +1171,16 @@ var render = function() {
         _vm._v(" "),
         _c(
           "small",
-          { staticClass: "d-block text-end mt-3" },
+          {
+            staticClass:
+              "d-block d-flex align-items-center justify-content-end mt-3"
+          },
           [
             _c("router-link", { attrs: { to: { name: "talents" } } }, [
-              _vm._v("Go to Talent Pool")
-            ])
+              _vm._v("Go to Talent Pool\n            ")
+            ]),
+            _vm._v(" "),
+            _c("i", { staticClass: "ri-arrow-right-s-line ms-2" })
           ],
           1
         )
