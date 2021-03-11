@@ -3,18 +3,25 @@ import axios from "axios";
 const talent = {
     namespaced: true,
     state: {
-        talents: {}
+        talents: {},
+        talent: {}
     },
 
     getters: {
         TALENTS(state) {
             return state.talents;
+        },
+        TALENT(state) {
+            return state.talent;
         }
     },
 
     mutations: {
         SET_TALENTS(state, payload) {
             state.talents = payload;
+        },
+        SET_TALENT(state, payload) {
+            state.talent = payload;
         }
     },
 
@@ -32,6 +39,10 @@ const talent = {
             await axios.post(`/api/talents`, formData, {
                 headers: { "Content-Type": "multipart/form-data" }
             });
+        },
+        async GET_TALENT({ commit }, id) {
+            const res = await axios.get(`/api/talents/${id}`);
+            commit("SET_TALENT", res.data);
         }
     }
 };

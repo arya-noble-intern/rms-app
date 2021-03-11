@@ -1,6 +1,6 @@
 <template>
     <div>
-        <page-heading title="Talent Detail" />
+        <page-heading title="Talent Details" />
         <div class="row">
             <div class="col">
                 <div class="card text-center shadow-4-strong">

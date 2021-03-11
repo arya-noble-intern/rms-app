@@ -11,6 +11,8 @@ import VueToast from "vue-toast-notification";
 import VueSkeletonLoader from "skeleton-loader-vue";
 import "vue-toast-notification/dist/theme-sugar.css";
 
+import GlobalMixin from "./mixins/Global";
+Vue.mixin(GlobalMixin);
 Vue.use(AppConst);
 Vue.use(VueRouter);
 Vue.use(VueToast);
