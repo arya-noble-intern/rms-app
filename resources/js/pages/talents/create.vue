@@ -17,12 +17,12 @@
                                 <input
                                     v-model="form.name"
                                     type="text"
-                                    id="name"
+                                    id="fullName"
                                     class="form-control"
                                     required
                                 />
-                                <label class="form-label" for="name"
-                                    >Name</label
+                                <label class="form-label" for="fullName"
+                                    >* Name</label
                                 >
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                                     required
                                 />
                                 <label class="form-label" for="applied_position"
-                                    >Applied Position</label
+                                    >* Applied Position</label
                                 >
                             </div>
                         </div>
@@ -75,9 +75,10 @@
                                     type="date"
                                     id="dob"
                                     class="form-control"
+                                    required
                                 />
                                 <label class="form-label" for="dob"
-                                    >Date of Birth</label
+                                    >* Date of Birth</label
                                 >
                             </div>
                         </div>
@@ -197,6 +198,7 @@
                             />
                         </div>
                     </div>
+                    <small class="text-danger">* Required fields</small>
                     <div class="d-flex justify-content-center">
                         <button
                             v-if="!loading"
@@ -259,7 +261,7 @@ export default {
 
             document.getElementById("dob").valueAsDate = new Date();
             document.getElementById("dob").focus();
-            document.getElementById("name").focus();
+            document.getElementById("fullName").focus();
         },
         changeFile(e) {
             const file = e.target.files[0];
