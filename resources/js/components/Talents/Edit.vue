@@ -303,6 +303,7 @@ export default {
                     formData: updateForm
                 });
                 this.$toast.success("Talent Updated..");
+                this.$scrollTo("#app");
             } catch (err) {
                 this.$toast.error("Error! " + err.response.statusText);
             } finally {

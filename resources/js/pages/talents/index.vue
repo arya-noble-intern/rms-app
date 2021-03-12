@@ -36,7 +36,6 @@
                     </div>
                     <router-link
                         :to="{ name: 'talents-create' }"
-                        tag="button"
                         type="button"
                         class="btn btn-primary btn-sm btn-rounded"
                         ><i class="ri-user-add-line me-2"></i>Create
@@ -79,7 +78,6 @@
                                             name: 'talents-show',
                                             params: { id: item.id }
                                         }"
-                                        tag="button"
                                         type="button"
                                         class="btn btn-info text-white btn-sm px-3 mx-2 d-flex align-items-center"
                                     >

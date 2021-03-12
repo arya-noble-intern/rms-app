@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="ME.data">
         <nav
             class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary border-bottom border-warning border-3"
         >
@@ -25,7 +25,6 @@
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 me-4">
                         <li class="nav-item mt-2 mt-lg-0">
                             <a
-                                v-if="ME.data"
                                 class="nav-link disabled text-white"
                                 href="javascript:void(0)"
                             >
@@ -48,11 +47,12 @@
 
         <div class="nav-scroller bg--body shadow-4">
             <nav class="nav nav-underline" aria-label="Secondary navigation">
-                <router-link :to="{ name: 'home' }" class="nav-link"
-                    >Home</router-link
-                >
-                <router-link :to="{ name: 'talents' }" class="nav-link"
-                    >Talent Pool</router-link
+                <router-link
+                    v-for="(item, index) in routers[ME.data.role.name]"
+                    :key="index"
+                    :to="{ name: item.to }"
+                    class="nav-link"
+                    >{{ item.name }}</router-link
                 >
             </nav>
         </div>
@@ -70,6 +70,32 @@ export default {
         ...mapGetters({
             ME: "user/ME"
         })
+    },
+    data() {
+        return {
+            routers: {
+                pic: [
+                    {
+                        to: "home",
+                        name: "Home"
+                    },
+                    {
+                        to: "talents",
+                        name: "Talent Pool"
+                    },
+                    {
+                        to: "employee-request-forms-index",
+                        name: "ERForms"
+                    }
+                ],
+                leader: [
+                    {
+                        to: "home",
+                        name: "Home"
+                    }
+                ]
+            }
+        };
     },
     methods: {
         ...mapActions({

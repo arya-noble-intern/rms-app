@@ -18,6 +18,9 @@ Vue.use(VueRouter);
 Vue.use(VueToast);
 Vue.use(VueSkeletonLoader);
 Vue.use(require("vue-moment"));
+Vue.use(require("vue-scrollto"), {
+    easing: "ease-in"
+});
 import * as mdb from "mdb-ui-kit"; // lib
 
 const app = new Vue({

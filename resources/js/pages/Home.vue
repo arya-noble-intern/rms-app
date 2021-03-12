@@ -34,14 +34,12 @@ export default {
         OverviewTalents,
         PageHeading
     },
-    mounted() {
-        this.GET_ERFS();
-        this.GET_CANDIDATE_CARDS();
-        this.GET_TALENTS({});
-
-        if (!Object.keys(this.ME).length) {
-            this.GET_ME();
+    async mounted() {
+        if (!Object.keys(this.ME.data).length) {
+            await this.GET_ME();
         }
+
+        await this.initData();
     },
     computed: {
         ...mapGetters({
@@ -49,7 +47,7 @@ export default {
             ERFS: "employeeRequestForm/ERFS"
         }),
         roleName() {
-            if (Object.keys(this.ME).length) {
+            if (Object.keys(this.ME.data).length) {
                 return this.ME.data.role.name;
             }
             return "";
@@ -61,7 +59,14 @@ export default {
             GET_CANDIDATE_CARDS: "candidateCard/GET_CANDIDATE_CARDS",
             GET_TALENTS: "talent/GET_TALENTS",
             GET_ME: "user/GET_ME"
-        })
+        }),
+        async initData() {
+            await this.GET_ERFS();
+            await this.GET_CANDIDATE_CARDS();
+            if (this.roleName == this.$getConst("PIC")) {
+                await this.GET_TALENTS({});
+            }
+        }
     }
 };
 </script>
