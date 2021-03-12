@@ -46,7 +46,7 @@
             <div class="table-responsive">
                 <table class="table table-hover align-middle">
                     <thead class="table-dark">
-                        <tr>
+                        <tr class="text-nowrap">
                             <th scope="col">ID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Position</th>

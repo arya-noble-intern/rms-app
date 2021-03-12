@@ -29,6 +29,11 @@ class EmployeeRequestFormController extends Controller
             function ($query) {
                 return $query->mine();
             }
+        )->when(
+            authUser()->is('pic'),
+            function ($query) {
+                return $query->approvedByLhc();
+            }
         )->latest()->paginate(30);
 
         return EmployeeRequestFormResource::collection($forms);

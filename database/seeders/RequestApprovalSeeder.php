@@ -32,9 +32,9 @@ class RequestApprovalSeeder extends Seeder
                 $notesByPic = $picApprove ? 'Lets Proceed' : 'Cannot Proceed request';
             }
             RequestApproval::factory([
-                'pic_id' => $picApprove ? $randomPic->id : null,
+                'pic_id' => $picAnswered ? $randomPic->id : null,
                 'approval_by_lhc' => $lhcApprove,
-                'approval_by_pic' => $picAnswered ? $picApprove : null,
+                'approval_by_pic' => $picApprove,
                 'notes_by_lhc' => $notesByLhc,
                 'notes_by_pic' => $notesByPic,
             ])->for($erf)->create();

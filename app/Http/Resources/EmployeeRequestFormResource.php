@@ -41,7 +41,8 @@ class EmployeeRequestFormResource extends JsonResource
             'dates' => [
                 'created_at' => $this->created_at,
                 'created_at_diff' => $this->created_at->diffForHumans()
-            ]
+            ],
+            'approval' => $this->requestApproval
         ];
     }
 }

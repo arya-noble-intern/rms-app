@@ -17,4 +17,11 @@ trait EmployeeRequestFormScope
             $q->where('approval_by_lhc', 1)->where('approval_by_pic', 1);
         });
     }
+
+    public function scopeApprovedByLhc($query)
+    {
+        $query->whereHas('requestApproval', function ($q) {
+            $q->where('approval_by_lhc', 1);
+        });
+    }
 }
