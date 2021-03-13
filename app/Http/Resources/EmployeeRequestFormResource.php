@@ -42,7 +42,8 @@ class EmployeeRequestFormResource extends JsonResource
                 'created_at' => $this->created_at,
                 'created_at_diff' => $this->created_at->diffForHumans()
             ],
-            'approval' => $this->requestApproval
+            'approval' => $this->requestApproval,
+            'candidate_cards_count' => $this->candidate_cards_count
         ];
     }
 }

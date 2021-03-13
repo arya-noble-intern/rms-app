@@ -19,8 +19,10 @@ const employeeRequestForm = {
     },
 
     actions: {
-        async GET_ERFS({ commit }) {
-            const res = await axios.get("/api/employee-request-forms");
+        async GET_ERFS({ commit }, { filter = "", search = "" }) {
+            const res = await axios.get(
+                `/api/employee-request-forms?filter=${filter}&search=${search}`
+            );
             commit("SET_ERFS", res.data);
         }
     }

@@ -28,5 +28,12 @@ return [
         'MCU_SCHEDULE' => 6,
         'PSYCHOTEST_SCHEDULE' => 7,
         'DONE' => 8
+    ],
+
+    'ERF_FILTER_OPTIONS' => [
+        "all-status" => 1,
+        "waiting-pic-approval" => 2,
+        "all-approved" => 3,
+        "rejected" => 4
     ]
 ];

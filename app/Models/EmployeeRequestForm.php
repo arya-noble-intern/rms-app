@@ -51,7 +51,7 @@ class EmployeeRequestForm extends Model
         return $this->hasOne(RequestApproval::class);
     }
 
-    public function candidateCard()
+    public function candidateCards()
     {
         return $this->hasMany(CandidateCard::class);
     }

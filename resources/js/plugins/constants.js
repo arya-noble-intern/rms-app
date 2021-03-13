@@ -1,7 +1,13 @@
 const AppConst = {
     PIC: "pic",
     LEADER: "leader",
-    CANDIDATE: "candidate"
+    CANDIDATE: "candidate",
+    ERF_FILTER_OPTIONS: [
+        "all-status",
+        "waiting-pic-approval",
+        "all-approved",
+        "rejected"
+    ]
 };
 
 AppConst.install = function(Vue) {

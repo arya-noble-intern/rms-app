@@ -22,9 +22,12 @@ class EmployeeRequestFormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $forms = EmployeeRequestForm::when(
+        $filter = $request->get('filter') ?? '';
+        $search = $request->get('search') ?? '';
+
+        $forms = EmployeeRequestForm::withCount('candidateCards')->when(
             authUser()->is('leader'),
             function ($query) {
                 return $query->mine();
@@ -34,7 +37,9 @@ class EmployeeRequestFormController extends Controller
             function ($query) {
                 return $query->approvedByLhc();
             }
-        )->latest()->paginate(30);
+        )->filterQuery($filter, $search)
+            ->latest()
+            ->paginate(30);
 
         return EmployeeRequestFormResource::collection($forms);
     }
