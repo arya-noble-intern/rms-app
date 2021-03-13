@@ -61,7 +61,7 @@ export default {
             GET_ME: "user/GET_ME"
         }),
         async initData() {
-            await this.GET_ERFS();
+            await this.GET_ERFS({});
             await this.GET_CANDIDATE_CARDS();
             if (this.roleName == this.$getConst("PIC")) {
                 await this.GET_TALENTS({});
