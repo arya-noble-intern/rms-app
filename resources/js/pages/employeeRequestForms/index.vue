@@ -116,9 +116,16 @@
                                         }}
                                     </button>
                                 </div>
-                                <button class="btn btn-link" type="button">
+                                <router-link
+                                    :to="{
+                                        name: 'employee-request-forms-show',
+                                        params: { id: item.id }
+                                    }"
+                                    class="btn btn-link"
+                                    type="button"
+                                >
                                     More Details
-                                </button>
+                                </router-link>
                             </div>
                         </div>
                     </div>
@@ -241,11 +248,13 @@ export default {
                 if (this.ERFS.links.next) {
                     this.page += 1;
                     this.getErfs();
+                    this.$scrollTo("#app", { duration: 200 });
                 }
             } else {
                 if (this.ERFS.links.prev) {
                     this.page -= 1;
                     this.getErfs();
+                    this.$scrollTo("#app", { duration: 200 });
                 }
             }
         },
@@ -263,7 +272,6 @@ export default {
                     search: this.searchField
                 });
                 this.$toast.success("Data updated");
-                this.$scrollTo("#app", { duration: 200 });
             } catch (err) {
                 this.$toast.error("Error! " + err.response.statusText);
             } finally {
@@ -329,7 +337,6 @@ export default {
             this.filterSelected = name;
             try {
                 await this.getErfs();
-                this.$toast.success("Data updated");
             } catch (err) {
                 this.$toast.error("Error! " + err.response.statusText);
             } finally {

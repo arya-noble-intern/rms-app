@@ -43,6 +43,25 @@ const routes = [
         component: () => import("../pages/employeeRequestForms/index.vue"),
         beforeEnter: multiguard([authMiddleware]),
         name: "employee-request-forms-index"
+    },
+    {
+        path: "/employee-request-forms/:id",
+        component: () => import("../pages/employeeRequestForms/_id/index.vue"),
+        beforeEnter: multiguard([authMiddleware]),
+        children: [
+            {
+                path: "",
+                component: () =>
+                    import("../components/EmployeeRequestForms/Details.vue"),
+                name: "employee-request-forms-show"
+            },
+            {
+                path: "requester",
+                component: () =>
+                    import("../components/EmployeeRequestForms/Requester.vue"),
+                name: "employee-request-forms-requester"
+            }
+        ]
     }
 ];
 

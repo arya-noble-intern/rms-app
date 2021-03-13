@@ -1,7 +1,7 @@
 <template>
     <div>
         <page-heading title="Talent Details" />
-        <div class="row">
+        <div class="row mt-4">
             <div class="col">
                 <div class="card text-center shadow-4-strong">
                     <div class="card-header">
