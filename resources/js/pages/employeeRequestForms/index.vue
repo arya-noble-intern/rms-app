@@ -52,7 +52,7 @@
                                 type="search"
                                 id="searchForm"
                                 class="form-control"
-                                @keyup="searchForTitle"
+                                @input="searchForTitle"
                             />
                             <label class="form-label" for="searchForm"
                                 >Search ERF Title</label
@@ -125,6 +125,57 @@
                 </div>
             </div>
         </div>
+        <div v-if="ERFS.data" class="row mt-4">
+            <div class="col">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <p>
+                            Page
+                            {{ ERFS.meta.current_page }} of
+                            {{ ERFS.meta.last_page }}
+                        </p>
+                    </div>
+                    <nav aria-label="pagination">
+                        <ul class="pagination justify-content-end mb-0">
+                            <li
+                                class="page-item"
+                                :class="{
+                                    disabled: !ERFS.links.prev || loading
+                                }"
+                                :disabled="loading"
+                                @click="changePage('prev')"
+                            >
+                                <a
+                                    class="page-link"
+                                    href="javascript:void(0)"
+                                    tabindex="-1"
+                                    >Previous</a
+                                >
+                            </li>
+                            <li class="page-item active">
+                                <a
+                                    class="page-link pe-none"
+                                    href="javascript:void(0)"
+                                    >{{ ERFS.meta.current_page }}</a
+                                >
+                            </li>
+                            <li
+                                class="page-item"
+                                :class="{
+                                    disabled: !ERFS.links.next || loading
+                                }"
+                                :disabled="loading"
+                                @click="changePage('next')"
+                            >
+                                <a class="page-link" href="javascript:void(0)"
+                                    >Next</a
+                                >
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -146,7 +197,8 @@ export default {
             filterSelected: "",
             filterOptions: [],
             searchField: "",
-            timer: null
+            timer: null,
+            page: 1
         };
     },
     async mounted() {
@@ -182,17 +234,36 @@ export default {
             });
             this.filterSelected = this.filterOptions[0];
         },
+        changePage(direction) {
+            this.page = this.ERFS.meta.current_page;
+
+            if (direction == "next") {
+                if (this.ERFS.links.next) {
+                    this.page += 1;
+                    this.getErfs();
+                }
+            } else {
+                if (this.ERFS.links.prev) {
+                    this.page -= 1;
+                    this.getErfs();
+                }
+            }
+        },
         async getErfs() {
             this.loading = true;
 
             try {
+                this.$toast.info("Loading ...");
+
                 await this.GET_ERFS({
+                    page: this.page,
                     filter: this.filterSelected
                         .toLowerCase()
                         .replaceAll(" ", "-"),
                     search: this.searchField
                 });
                 this.$toast.success("Data updated");
+                this.$scrollTo("#app", { duration: 200 });
             } catch (err) {
                 this.$toast.error("Error! " + err.response.statusText);
             } finally {

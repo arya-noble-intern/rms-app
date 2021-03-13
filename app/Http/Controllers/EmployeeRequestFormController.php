@@ -39,7 +39,7 @@ class EmployeeRequestFormController extends Controller
             }
         )->filterQuery($filter, $search)
             ->latest()
-            ->paginate(30);
+            ->paginate(6);
 
         return EmployeeRequestFormResource::collection($forms);
     }
