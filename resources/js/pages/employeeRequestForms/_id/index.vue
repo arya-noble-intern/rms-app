@@ -1,6 +1,13 @@
 <template>
     <div>
-        <page-heading title="Employee Request Form Details" />
+        <div class="row">
+            <div
+                class="col-12 d-flex align-items-center justify-content-between"
+            >
+                <page-heading title="Employee Request Form Details" />
+                <loading v-if="loading" />
+            </div>
+        </div>
         <div class="row mt-4">
             <div class="col-12 col-xl-8">
                 <div class="card text-center shadow-4-strong">
@@ -71,7 +78,13 @@
                 <div class="row">
                     <div class="col">
                         <div class="d-grid">
-                            <button class="btn btn-primary" type="button">
+                            <button
+                                class="btn btn-primary"
+                                :class="{ disabled: !allApproved || loading }"
+                                type="button"
+                                @click="makeCandidateCard()"
+                                :disabled="!allApproved || loading"
+                            >
                                 Make Candidate Card
                             </button>
                         </div>
@@ -138,7 +151,8 @@ export default {
     },
     computed: {
         ...mapGetters({
-            ERF: "employeeRequestForm/ERF"
+            ERF: "employeeRequestForm/ERF",
+            CANDIDATE_CARD: "candidateCard/CANDIDATE_CARD"
         }),
         candidateCardCount() {
             if (Object.keys(this.ERF).length > 0) {
@@ -153,11 +167,21 @@ export default {
             }
 
             return null;
+        },
+        allApproved() {
+            if (this.item) {
+                return (
+                    this.item.approval.approval_by_pic == 1 &&
+                    this.item.approval.approval_by_lhc == 1
+                );
+            }
+            return false;
         }
     },
     methods: {
         ...mapActions({
-            GET_ERF: "employeeRequestForm/GET_ERF"
+            GET_ERF: "employeeRequestForm/GET_ERF",
+            CREATE_CANDIDATE_CARD: "candidateCard/CREATE_CANDIDATE_CARD"
         }),
         async getErf() {
             this.loading = true;
@@ -168,6 +192,26 @@ export default {
                 this.$toast.success("Data loaded...");
             } catch (err) {
                 this.$toast.error("Error! " + err.response.statusText);
+            } finally {
+                this.loading = false;
+            }
+        },
+        async makeCandidateCard() {
+            this.loading = true;
+            try {
+                const payload = {
+                    employee_request_form_id: this.$route.params.id
+                };
+                await this.CREATE_CANDIDATE_CARD(payload);
+                this.$toast.success("Candidate card created");
+                this.$toast.info("Redirecting you in 3 seconds..");
+                await this.$delay(3000);
+                this.$router.push({
+                    name: "candidate-cards-show",
+                    params: { id: this.CANDIDATE_CARD.id }
+                });
+            } catch (err) {
+                this.$toast.error(`Error! ${err.response.statusText}`);
             } finally {
                 this.loading = false;
             }

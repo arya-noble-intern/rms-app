@@ -68,6 +68,18 @@ const routes = [
                 name: "employee-request-forms-approval"
             }
         ]
+    },
+    {
+        path: "/candidate-cards",
+        component: () => import("../pages/candidateCards/index.vue"),
+        beforeEnter: multiguard([authMiddleware]),
+        name: "candidate-cards-index"
+    },
+    {
+        path: "/candidate-cards/:id",
+        component: () => import("../pages/candidateCards/_id/index.vue"),
+        beforeEnter: multiguard([authMiddleware]),
+        name: "candidate-cards-show"
     }
 ];
 
