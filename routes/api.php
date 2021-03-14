@@ -6,6 +6,7 @@ use App\Http\Controllers\MeController;
 use App\Http\Controllers\PicUserManagementController;
 use App\Http\Controllers\RequestApprovalController;
 use App\Http\Controllers\RequestApprovalResendController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TalentController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::apiResource('employee-request-forms', EmployeeRequestFormController::class);
     Route::apiResource('candidate-cards', CandidateCardController::class);
     Route::apiResource('pic-user-managements', PicUserManagementController::class);
-
+    Route::get('statuses', StatusController::class)->name('statuses.index');
 
 
     Route::patch('request-approvals/{request_approval}', [RequestApprovalController::class, 'update'])->name('request-approvals.update')->middleware('role.check:pic');

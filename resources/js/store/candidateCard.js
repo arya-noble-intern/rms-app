@@ -26,8 +26,8 @@ const candidateCard = {
     },
 
     actions: {
-        async GET_CANDIDATE_CARDS({ commit }) {
-            const res = await axios.get("/api/candidate-cards");
+        async GET_CANDIDATE_CARDS({ commit }, { page = 1 }) {
+            const res = await axios.get(`/api/candidate-cards?page=${page}`);
             commit("SET_CANDIDATE_CARDS", res.data);
         },
         async CREATE_CANDIDATE_CARD({ commit }, payload) {

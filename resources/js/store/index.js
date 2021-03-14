@@ -7,6 +7,7 @@ import employeeRequestForm from "./employeeRequestForm";
 import picUserManagement from "./picUserManagement";
 import talent from "./talent";
 import requestApproval from "./requestApproval";
+import cardStatus from "./cardStatus";
 
 Vue.use(Vuex);
 
@@ -24,7 +25,8 @@ const store = new Vuex.Store({
         employeeRequestForm,
         picUserManagement,
         talent,
-        requestApproval
+        requestApproval,
+        cardStatus
     }
 });
 

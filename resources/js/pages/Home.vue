@@ -62,7 +62,7 @@ export default {
         }),
         async initData() {
             await this.GET_ERFS({});
-            await this.GET_CANDIDATE_CARDS();
+            await this.GET_CANDIDATE_CARDS({});
             if (this.roleName == this.$getConst("PIC")) {
                 await this.GET_TALENTS({});
             }
