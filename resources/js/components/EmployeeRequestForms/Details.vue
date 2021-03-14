@@ -29,7 +29,10 @@ export default {
         FormRequest
     },
     async mounted() {
-        if (!Object.keys(this.ERF).length) {
+        if (
+            !Object.keys(this.ERF.data).length ||
+            this.ERF.data.id != this.$route.params.id
+        ) {
             await this.GET_ERF(this.$route.params.id);
         }
         this.initData();

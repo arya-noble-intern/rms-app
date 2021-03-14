@@ -2,9 +2,11 @@
     <div>
         <page-heading title="Employee Request Form Details" />
         <div class="row mt-4">
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-xl-8">
                 <div class="card text-center shadow-4-strong">
-                    <div class="card-header">
+                    <div
+                        class="card-header d-flex justify-content-between align-items-center"
+                    >
                         <ul class="nav nav-pills card-header-tabs">
                             <li class="nav-item">
                                 <router-link
@@ -28,84 +30,94 @@
                                     >Requester Details</router-link
                                 >
                             </li>
+                            <li class="nav-item">
+                                <router-link
+                                    :to="{
+                                        name: 'employee-request-forms-approval'
+                                    }"
+                                    exact-active-class="active"
+                                    class="nav-link"
+                                    href="javascript:void(0)"
+                                    >Approvals</router-link
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <router-link
+                                    :to="{
+                                        name: 'employee-request-forms-approval'
+                                    }"
+                                    exact-active-class="active"
+                                    class="nav-link"
+                                    href="javascript:void(0)"
+                                    >Make Candidate Card</router-link
+                                >
+                            </li>
                         </ul>
+                        <div>
+                            <button
+                                v-if="item"
+                                type="button"
+                                class="btn btn-sm btn-rounded text-white"
+                                :class="
+                                    getStatusBadge(
+                                        item.approval.approval_by_pic
+                                    )
+                                "
+                                disabled
+                            >
+                                {{
+                                    getStatusText(item.approval.approval_by_pic)
+                                }}
+                            </button>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <router-view />
+                        <div v-if="ERF.data">
+                            <router-view />
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-4">
-                <div class="card text-center shadow-4-strong">
-                    <div class="card-header">
+            <div class="col-12 col-xl-4 mt-4 mt-xl-0">
+                <div class="row">
+                    <div class="col">
+                        <div class="d-grid">
+                            <button class="btn btn-primary" type="button">
+                                Make Candidate Card
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-center shadow-4-strong mt-2">
+                    <div class="card-header py-4">
                         <h4 class="mb-0">
                             Associated Candidate Cards
-                            <span class="badge bg-secondary">3</span>
+                            <span class="badge bg-secondary ms-2">{{
+                                candidateCardCount
+                            }}</span>
                         </h4>
                     </div>
-                    <div class="card-body">
-                        <div class="list-group shadow-2">
+                    <div v-if="ERF.data" class="card-body">
+                        <div class="list-group shadow-2 w-75  mx-auto">
                             <a
-                                href="#"
+                                v-for="card in ERF.data.candidate_cards"
+                                :key="card.id"
+                                href="javascript:void(0)"
                                 class="list-group-item list-group-item-action"
                                 aria-current="true"
                             >
                                 <div
                                     class="d-flex w-100 justify-content-between"
                                 >
-                                    <h5 class="mb-1">
-                                        List group item heading
-                                    </h5>
-                                    <small>3 days ago</small>
+                                    <div>
+                                        <small>{{ card.created_at }}</small>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0">
+                                            {{ card.status }}
+                                        </p>
+                                    </div>
                                 </div>
-                                <p class="mb-1">
-                                    Donec id elit non mi porta gravida at eget
-                                    metus. Maecenas sed diam eget risus varius
-                                    blandit.
-                                </p>
-                                <small>Donec id elit non mi porta.</small>
-                            </a>
-                            <a
-                                href="#"
-                                class="list-group-item list-group-item-action"
-                            >
-                                <div
-                                    class="d-flex w-100 justify-content-between"
-                                >
-                                    <h5 class="mb-1">
-                                        List group item heading
-                                    </h5>
-                                    <small class="text-muted">3 days ago</small>
-                                </div>
-                                <p class="mb-1">
-                                    Donec id elit non mi porta gravida at eget
-                                    metus. Maecenas sed diam eget risus varius
-                                    blandit.
-                                </p>
-                                <small class="text-muted"
-                                    >Donec id elit non mi porta.</small
-                                >
-                            </a>
-                            <a
-                                href="#"
-                                class="list-group-item list-group-item-action"
-                            >
-                                <div
-                                    class="d-flex w-100 justify-content-between"
-                                >
-                                    <h5 class="mb-1">
-                                        List group item heading
-                                    </h5>
-                                    <small class="text-muted">3 days ago</small>
-                                </div>
-                                <p class="mb-1">
-                                    Donec id elit non mi porta gravida at eget
-                                    metus. Maecenas sed diam eget risus varius
-                                    blandit.
-                                </p>
-                                <small class="text-muted"
-                                    >Donec id elit non mi porta.</small
-                                >
                             </a>
                         </div>
                     </div>
@@ -132,13 +144,27 @@ export default {
             loading: false
         };
     },
-    mounted() {
-        this.getErf();
+    async created() {
+        await this.getErf();
     },
     computed: {
         ...mapGetters({
             ERF: "employeeRequestForm/ERF"
-        })
+        }),
+        candidateCardCount() {
+            if (Object.keys(this.ERF).length > 0) {
+                return this.ERF.data.candidate_cards_count ?? 0;
+            }
+
+            return 0;
+        },
+        item() {
+            if (Object.keys(this.ERF).length) {
+                return this.ERF.data;
+            }
+
+            return null;
+        }
     },
     methods: {
         ...mapActions({
@@ -156,6 +182,38 @@ export default {
             } finally {
                 this.loading = false;
             }
+        },
+        getStatusBadge(approval) {
+            let color = "";
+            switch (approval) {
+                case null:
+                    color = "info";
+                    break;
+                case 0:
+                    color = "danger";
+                    break;
+                default:
+                    color = "success";
+                    break;
+            }
+
+            return `bg-${color}`;
+        },
+        getStatusText(approval) {
+            let text = "";
+            switch (approval) {
+                case null:
+                    text = "Needs Approval";
+                    break;
+                case 0:
+                    text = "Rejected";
+                    break;
+                default:
+                    text = "All Approved";
+                    break;
+            }
+
+            return text;
         }
     }
 };

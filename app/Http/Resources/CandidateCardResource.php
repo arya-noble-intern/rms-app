@@ -24,7 +24,10 @@ class CandidateCardResource extends JsonResource
             'last_updated_by_id' => $this->last_updated_by_id,
 
             'status' => $this->cardStatus,
-            'employee_request_form' => new EmployeeRequestFormResource($this->employeeRequestForm),
+            'employee_request_form' => [
+                'id' => $this->employeeRequestForm->id,
+                'title' => $this->employeeRequestForm->title
+            ],
             'pic' => new UserResource($this->pic),
             'talent' => new TalentResource($this->talent),
             'candidate' => new UserResource($this->candidate),

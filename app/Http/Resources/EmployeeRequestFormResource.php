@@ -14,6 +14,16 @@ class EmployeeRequestFormResource extends JsonResource
      */
     public function toArray($request)
     {
+        $candidateCards = $this->candidateCards()->get();
+        $cardsArr = [];
+        foreach ($candidateCards as $card) {
+            array_push($cardsArr, [
+                'id' => $card->id,
+                'status_id' => $card->card_status_id,
+                'status' => $card->cardStatus->description,
+                'created_at' => $card->created_at->diffForHumans()
+            ]);
+        }
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
@@ -43,7 +53,9 @@ class EmployeeRequestFormResource extends JsonResource
                 'created_at_diff' => $this->created_at->diffForHumans()
             ],
             'approval' => $this->requestApproval,
-            'candidate_cards_count' => $this->candidate_cards_count
+            'candidate_cards_count' => $candidateCards->count(),
+            'candidate_cards' => $cardsArr
+
         ];
     }
 }

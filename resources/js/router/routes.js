@@ -60,6 +60,12 @@ const routes = [
                 component: () =>
                     import("../components/EmployeeRequestForms/Requester.vue"),
                 name: "employee-request-forms-requester"
+            },
+            {
+                path: "approval",
+                component: () =>
+                    import("../components/EmployeeRequestForms/Approval.vue"),
+                name: "employee-request-forms-approval"
             }
         ]
     }
