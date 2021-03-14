@@ -41,17 +41,6 @@
                                     >Approvals</router-link
                                 >
                             </li>
-                            <li class="nav-item">
-                                <router-link
-                                    :to="{
-                                        name: 'employee-request-forms-approval'
-                                    }"
-                                    exact-active-class="active"
-                                    class="nav-link"
-                                    href="javascript:void(0)"
-                                    >Make Candidate Card</router-link
-                                >
-                            </li>
                         </ul>
                         <div>
                             <button

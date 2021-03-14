@@ -6,6 +6,7 @@ import candidateCard from "./candidateCard";
 import employeeRequestForm from "./employeeRequestForm";
 import picUserManagement from "./picUserManagement";
 import talent from "./talent";
+import requestApproval from "./requestApproval";
 
 Vue.use(Vuex);
 
@@ -22,7 +23,8 @@ const store = new Vuex.Store({
         candidateCard,
         employeeRequestForm,
         picUserManagement,
-        talent
+        talent,
+        requestApproval
     }
 });
 

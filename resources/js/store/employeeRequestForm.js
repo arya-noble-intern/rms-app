@@ -22,6 +22,12 @@ const employeeRequestForm = {
         },
         SET_ERF(state, payload) {
             state.erf = payload;
+        },
+        SET_ERF_APPROVAL(state, payload) {
+            state.erf.data.approval.notes_by_pic = payload.notes_by_pic;
+            state.erf.data.approval.approval_by_pic = parseInt(
+                payload.approval_by_pic
+            );
         }
     },
 
@@ -35,6 +41,9 @@ const employeeRequestForm = {
         async GET_ERF({ commit }, id) {
             const res = await axios.get(`/api/employee-request-forms/${id}`);
             commit("SET_ERF", res.data);
+        },
+        async UPDATE_ERF_APPROVAL({ commit }, payload) {
+            commit("SET_ERF_APPROVAL", payload);
         }
     }
 };
