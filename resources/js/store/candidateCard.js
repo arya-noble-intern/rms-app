@@ -38,6 +38,16 @@ const candidateCard = {
         async CREATE_CANDIDATE_CARD({ commit }, payload) {
             const res = await axios.post("/api/candidate-cards", payload);
             commit("SET_CANDIDATE_CARD", res.data);
+        },
+        async GET_CANDIDATE_CARD({ commit }, id) {
+            const res = await axios.get(`/api/candidate-cards/${id}`);
+            commit("SET_CANDIDATE_CARD", res.data);
+        },
+        async UPDATE_CANDIDATE_CARD({ commit }, { id, payload }) {
+            const res = await axios.patch(
+                `/api/candidate-cards/${id}`,
+                payload
+            );
         }
     }
 };

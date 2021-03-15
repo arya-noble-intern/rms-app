@@ -8,10 +8,10 @@
                         >Arya Noble - 2021<br />
                         &copy; Tailored by
                         <a
-                            href="https://github.com/Jchann24"
-                            class="link-secondary"
+                            href="https://github.com/jasonnchann24"
+                            class="link-secondary text-decoration-underline"
                             target="__blank"
-                            >Jchann24 <i class="ri-github-line"></i
+                            ><i class="ri-github-fill ri-lg"></i
                         ></a>
                     </small>
                 </div>

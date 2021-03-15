@@ -21,16 +21,9 @@ trait CandidateCardScope
         $statusOrder = $request->get('statusOrder') ?? 0;
 
         $query->when(
-            $sortBy !== 'status_order',
+            $sortBy,
             function ($q) use ($sortBy, $sortDir) {
                 return $q->orderBy($sortBy, $sortDir);
-            }
-        )->when(
-            $sortBy == 'status_order',
-            function ($q) use ($sortDir) {
-                return $q->whereHas('cardStatus', function ($q) use ($sortDir) {
-                    return $q->orderBy('order', $sortDir);
-                });
             }
         )->when($statusOrder != 0, function ($q) use ($statusOrder) {
             return $q->whereHas(

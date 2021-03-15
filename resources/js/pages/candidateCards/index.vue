@@ -96,9 +96,10 @@
                 <div class="card shadow-2-strong mb-3">
                     <div class="card-body p-3">
                         <h5 class="card-title text-truncate">
-                            <span class="badge bg-info">{{
-                                item.status.description
-                            }}</span>
+                            <span class="badge bg-info"
+                                >{{ item.status.order }} -
+                                {{ item.status.description }}</span
+                            >
                         </h5>
                         <p class="card-text text-truncate">
                             {{ item.employee_request_form.title }}
@@ -215,12 +216,6 @@ export default {
                 },
                 oldest: {
                     created_at: "asc"
-                },
-                early_process: {
-                    status_order: "asc"
-                },
-                further_process: {
-                    status_order: "desc"
                 }
             },
             selectedStatusOrder: 0,

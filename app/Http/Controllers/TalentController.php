@@ -24,8 +24,12 @@ class TalentController extends Controller
     {
         $sortBy = $request->get('sortBy') ?? 'created_at';
         $sortDir = $request->get('sortDir') ?? 'desc';
+        $search = $request->get('search') ?? '';
 
-        $talents = Talent::orderBy($sortBy, $sortDir)->paginate(10);
+        $talents = Talent::when($search != '', function ($q) use ($search) {
+            return $q->where('name', 'LIKE', "%{$search}%");
+        })->orderBy($sortBy, $sortDir)
+            ->paginate(5);
         return TalentResource::collection($talents);
     }
 

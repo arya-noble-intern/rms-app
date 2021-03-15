@@ -101,7 +101,11 @@
                     </div>
                     <div v-if="ERF.data" class="card-body">
                         <div class="list-group shadow-2 w-75  mx-auto">
-                            <a
+                            <router-link
+                                :to="{
+                                    name: 'candidate-cards-show',
+                                    params: { id: card.id }
+                                }"
                                 v-for="card in ERF.data.candidate_cards"
                                 :key="card.id"
                                 href="javascript:void(0)"
@@ -120,7 +124,7 @@
                                         </p>
                                     </div>
                                 </div>
-                            </a>
+                            </router-link>
                         </div>
                     </div>
                 </div>

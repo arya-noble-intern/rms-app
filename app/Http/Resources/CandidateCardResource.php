@@ -37,6 +37,10 @@ class CandidateCardResource extends JsonResource
                 'created_at' => $this->created_at,
                 'created_at_diff' => $this->created_at->diffForHumans()
             ],
+            'last_updated_dates' => [
+                'updated_at' => $this->updated_at,
+                'updated_at_diff' => $this->updated_at->diffForHumans()
+            ]
         ];
     }
 }

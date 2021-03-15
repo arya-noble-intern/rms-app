@@ -28,10 +28,10 @@ const talent = {
     actions: {
         async GET_TALENTS(
             { commit },
-            { page = 1, sort = "created_at", sortDir = "desc" }
+            { page = 1, sort = "created_at", sortDir = "desc", search = "" }
         ) {
             const res = await axios.get(
-                `/api/talents?page=${page}&sortBy=${sort}&sortDir=${sortDir}`
+                `/api/talents?page=${page}&sortBy=${sort}&sortDir=${sortDir}&search=${search}`
             );
             commit("SET_TALENTS", res.data);
         },

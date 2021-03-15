@@ -79,7 +79,14 @@ const routes = [
         path: "/candidate-cards/:id",
         component: () => import("../pages/candidateCards/_id/index.vue"),
         beforeEnter: multiguard([authMiddleware]),
-        name: "candidate-cards-show"
+        children: [
+            {
+                path: "",
+                component: () =>
+                    import("../components/candidateCards/Details.vue"),
+                name: "candidate-cards-show"
+            }
+        ]
     }
 ];
 
