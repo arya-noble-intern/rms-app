@@ -26,8 +26,13 @@ const candidateCard = {
     },
 
     actions: {
-        async GET_CANDIDATE_CARDS({ commit }, { page = 1 }) {
-            const res = await axios.get(`/api/candidate-cards?page=${page}`);
+        async GET_CANDIDATE_CARDS(
+            { commit },
+            { page = 1, sortBy = "", sortDir = "", statusOrder = "" }
+        ) {
+            const res = await axios.get(
+                `/api/candidate-cards?page=${page}&sortBy=${sortBy}&sortDir=${sortDir}&statusOrder=${statusOrder}`
+            );
             commit("SET_CANDIDATE_CARDS", res.data);
         },
         async CREATE_CANDIDATE_CARD({ commit }, payload) {

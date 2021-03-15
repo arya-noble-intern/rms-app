@@ -32,7 +32,11 @@ class CandidateCardResource extends JsonResource
             'talent' => new TalentResource($this->talent),
             'candidate' => new UserResource($this->candidate),
             'leader' => new UserResource($this->leader),
-            'last_updated_by' => new UserResource($this->lastUpdatedBy)
+            'last_updated_by' => new UserResource($this->lastUpdatedBy),
+            'dates' => [
+                'created_at' => $this->created_at,
+                'created_at_diff' => $this->created_at->diffForHumans()
+            ],
         ];
     }
 }

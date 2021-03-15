@@ -12,31 +12,29 @@ use Illuminate\Support\Facades\Response;
 
 class CandidateCardController extends Controller
 {
-    private $repository;
 
-    public function __construct(CandidateCard $candidateCard)
+    public function __construct()
     {
         $this->middleware('role.check:pic,leader')->only('index');
         $this->middleware('role.check:pic,leader,candidate')->only('show');
         $this->middleware('role.check:pic')->only(['update', 'destroy']);
-
-        $this->repository = $candidateCard;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $repo = $this->repository;
-        if (!authUser()->is('pic')) {
-            $repo = $repo->myCards();
-        }
+        $cards = CandidateCard::when(
+            !authUser()->is('pic'),
+            function ($q) {
+                return $q->myCards();
+            }
+        )->filterQuery($request)
+            ->paginate(30);
 
-        $repo = $repo->paginate(30);
-
-        return CandidateCardResource::collection($repo);
+        return CandidateCardResource::collection($cards);
     }
 
     /**

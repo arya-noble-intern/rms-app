@@ -49,7 +49,7 @@
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
-                            Filter Status
+                            Status Number - {{ selectedStatusOrder }}
                         </button>
                         <ul
                             class="dropdown-menu"
@@ -58,10 +58,12 @@
                             <li>
                                 <a
                                     class="dropdown-item"
-                                    :class="{ active: selectedStatus == 0 }"
+                                    :class="{
+                                        active: selectedStatusOrder == 0
+                                    }"
                                     href="javascript:void(0)"
                                     @click="changeStatus(0)"
-                                    >All Status</a
+                                    >0 - All Statuses</a
                                 >
                             </li>
                             <li
@@ -71,7 +73,8 @@
                                 <a
                                     class="dropdown-item"
                                     :class="{
-                                        active: selectedStatus == item.order
+                                        active:
+                                            selectedStatusOrder == item.order
                                     }"
                                     href="javascript:void(0)"
                                     @click="changeStatus(item.order)"
@@ -88,21 +91,44 @@
             <div
                 v-for="(item, index) in CANDIDATE_CARDS.data"
                 :key="index"
-                class="col-4"
+                class="col-12 col-md-6 col-lg-4"
             >
                 <div class="card shadow-2-strong mb-3">
                     <div class="card-body p-3">
-                        <h5 class="card-title">
+                        <h5 class="card-title text-truncate">
                             <span class="badge bg-info">{{
                                 item.status.description
                             }}</span>
                         </h5>
-                        <p class="card-text">
+                        <p class="card-text text-truncate">
                             {{ item.employee_request_form.title }}
                         </p>
-                        <button type="button" class="btn btn-primary float-end">
-                            Details
-                        </button>
+                        <div class="row">
+                            <div
+                                class="col-12 d-flex align-items-center justify-content-between"
+                            >
+                                <div class="d-flex flex-column">
+                                    <small
+                                        >Created by {{ item.pic.name }}</small
+                                    >
+                                    <small class="text-muted"
+                                        >Created
+                                        {{ item.dates.created_at_diff }}</small
+                                    >
+                                </div>
+
+                                <router-link
+                                    :to="{
+                                        name: 'candidate-cards-show',
+                                        params: { id: item.id }
+                                    }"
+                                    type="button"
+                                    class="btn btn-primary float-end"
+                                >
+                                    Details
+                                </router-link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -197,7 +223,7 @@ export default {
                     status_order: "desc"
                 }
             },
-            selectedStatus: 0,
+            selectedStatusOrder: 0,
             timer: null
         };
     },
@@ -248,8 +274,16 @@ export default {
         },
         async getCandidateCards() {
             this.loading = true;
+            const by = Object.keys(this.sortList[`${this.selectedSort}`])[0];
+            const dir = this.sortList[`${this.selectedSort}`][`${by}`];
+            let payload = {
+                page: this.page,
+                sortBy: by,
+                sortDir: dir,
+                statusOrder: this.selectedStatusOrder
+            };
             try {
-                await this.GET_CANDIDATE_CARDS({ page: this.page });
+                await this.GET_CANDIDATE_CARDS(payload);
                 this.$toast.success("Data loaded");
             } catch (err) {
                 this.$toast.error("Error! " + err.response.statusText);
@@ -259,23 +293,25 @@ export default {
         },
         changeSort(name) {
             this.selectedSort = name;
+            this.getCandidateCards();
         },
         changeStatus(order) {
-            this.selectedStatus = parseInt(order);
+            this.selectedStatusOrder = parseInt(order);
+            this.getCandidateCards();
         },
-        changePage(direction) {
+        async changePage(direction) {
             this.page = this.CANDIDATE_CARDS.meta.current_page;
 
             if (direction == "next") {
                 if (this.CANDIDATE_CARDS.links.next) {
                     this.page += 1;
-                    // this.getErfs();
+                    await this.getCandidateCards();
                     this.$scrollTo("#app", { duration: 200 });
                 }
             } else {
                 if (this.CANDIDATE_CARDS.links.prev) {
                     this.page -= 1;
-                    // this.getErfs();
+                    await this.getCandidateCards();
                     this.$scrollTo("#app", { duration: 200 });
                 }
             }
