@@ -212,6 +212,7 @@ export default {
         await this.getErfs();
         this.initInput();
         this.initFilterOptions();
+        this.$scrollTo("#app", { duration: 200 });
     },
     computed: {
         ...mapGetters({
@@ -241,19 +242,19 @@ export default {
             });
             this.filterSelected = this.filterOptions[0];
         },
-        changePage(direction) {
+        async changePage(direction) {
             this.page = this.ERFS.meta.current_page;
 
             if (direction == "next") {
                 if (this.ERFS.links.next) {
                     this.page += 1;
-                    this.getErfs();
+                    await this.getErfs();
                     this.$scrollTo("#app", { duration: 200 });
                 }
             } else {
                 if (this.ERFS.links.prev) {
                     this.page -= 1;
-                    this.getErfs();
+                    await this.getErfs();
                     this.$scrollTo("#app", { duration: 200 });
                 }
             }

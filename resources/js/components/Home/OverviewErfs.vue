@@ -38,8 +38,13 @@
                     <card-table-skeleton />
                 </div>
             </template>
-            <small class="d-block text-end mt-3">
-                <a href="#">View all</a>
+            <small
+                class="d-block d-flex align-items-center justify-content-end mt-3"
+            >
+                <router-link :to="{ name: 'employee-request-forms-index' }"
+                    >Go to ERForms
+                </router-link>
+                <i class="ri-arrow-right-s-line ms-2"></i>
             </small>
         </div>
     </section>

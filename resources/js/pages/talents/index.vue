@@ -177,6 +177,7 @@ export default {
         await this.getTalents();
 
         this.parameters.page = this.TALENTS.meta.current_page;
+        this.$scrollTo("#app", { duration: 200 });
     },
     data() {
         return {
