@@ -44,6 +44,13 @@ const employeeRequestForm = {
         },
         async UPDATE_ERF_APPROVAL({ commit }, payload) {
             commit("SET_ERF_APPROVAL", payload);
+        },
+        async CREATE_ERF({ commit }, payload) {
+            const res = await axios.post(
+                `/api/employee-request-forms`,
+                payload
+            );
+            commit("SET_ERF", res.data);
         }
     }
 };

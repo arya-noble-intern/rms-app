@@ -11,6 +11,9 @@ const user = {
         ME(state) {
             return state.me;
         },
+        ROLE_NAME(state) {
+            return state.me.data.role.name;
+        },
         IS_LOGGED_IN(state) {
             return state.isLoggedIn;
         }

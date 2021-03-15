@@ -44,6 +44,27 @@
                         </ul>
                     </div>
                 </div>
+                <div
+                    v-if="ROLE_NAME == $getConst('LEADER')"
+                    class="d-flex justify-content-center align-items-center"
+                >
+                    <router-link
+                        :to="{ name: 'employee-request-forms-create' }"
+                        type="button"
+                        class="btn btn-primary d-flex align-items-center mx-2"
+                        ><i class="ri-add-line ri-lg me-2"></i> Create new
+                        ERF</router-link
+                    >
+                    <button
+                        type="button"
+                        class="btn btn-primary d-flex align-items-center mx-2"
+                        data-mdb-toggle="modal"
+                        data-mdb-target="#exampleModal"
+                    >
+                        <i class="ri-question-line ri-lg me-2"></i> View Pending
+                        Approvals
+                    </button>
+                </div>
                 <div>
                     <div class="input-group">
                         <div class="form-outline">
@@ -183,6 +204,44 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div
+            v-if="ROLE_NAME == $getConst('LEADER')"
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Modal title
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-mdb-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">...</div>
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-mdb-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -216,7 +275,8 @@ export default {
     },
     computed: {
         ...mapGetters({
-            ERFS: "employeeRequestForm/ERFS"
+            ERFS: "employeeRequestForm/ERFS",
+            ROLE_NAME: "user/ROLE_NAME"
         })
     },
     methods: {

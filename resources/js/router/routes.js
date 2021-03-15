@@ -1,5 +1,6 @@
 import authMiddleware from "../middlewares/auth";
 import picOnly from "../middlewares/picOnly";
+import leaderOnly from "../middlewares/leaderOnly";
 import multiguard from "vue-router-multiguard";
 
 const routes = [
@@ -43,6 +44,12 @@ const routes = [
         component: () => import("../pages/employeeRequestForms/index.vue"),
         beforeEnter: multiguard([authMiddleware]),
         name: "employee-request-forms-index"
+    },
+    {
+        path: "/employee-request-forms/create",
+        component: () => import("../pages/employeeRequestForms/create.vue"),
+        beforeEnter: multiguard([authMiddleware, leaderOnly]),
+        name: "employee-request-forms-create"
     },
     {
         path: "/employee-request-forms/:id",

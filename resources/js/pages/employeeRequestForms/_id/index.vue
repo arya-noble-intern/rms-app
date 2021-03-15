@@ -8,7 +8,7 @@
                 <loading v-if="loading" />
             </div>
         </div>
-        <div class="row mt-4">
+        <div v-if="ERF.data" class="row mt-4">
             <div class="col-12 col-xl-8">
                 <div class="card text-center shadow-4-strong">
                     <div
