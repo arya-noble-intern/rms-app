@@ -14,6 +14,18 @@
                     </div>
                 </div>
             </div>
+            <div v-if="roleName == $getConst('LEADER')">
+                <leader-cards />
+                <hr />
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <overview-erfs />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <overview-candidate-cards />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -22,8 +34,10 @@
 import Vue from "vue";
 import { mapActions, mapGetters } from "vuex";
 import PicCards from "../components/Home/PicCards.vue";
+import LeaderCards from "../components/Home/LeaderCards.vue";
 import OverviewErfs from "../components/Home/OverviewErfs.vue";
 import OverviewTalents from "../components/Home/OverviewTalents.vue";
+import OverviewCandidateCards from "../components/Home/OverviewCandidateCards.vue";
 import PageHeading from "../components/Core/PageHeading.vue";
 
 export default {
@@ -32,7 +46,9 @@ export default {
         PicCards,
         OverviewErfs,
         OverviewTalents,
-        PageHeading
+        PageHeading,
+        LeaderCards,
+        OverviewCandidateCards
     },
     async mounted() {
         if (!Object.keys(this.ME.data).length) {

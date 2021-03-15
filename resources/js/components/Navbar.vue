@@ -96,6 +96,14 @@ export default {
                     {
                         to: "home",
                         name: "Home"
+                    },
+                    {
+                        to: "employee-request-forms-index",
+                        name: "ERForms"
+                    },
+                    {
+                        to: "candidate-cards-index",
+                        name: "Candidate Cards"
                     }
                 ]
             }
